@@ -1,5 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light" style="background:#5AB8E6">
-    <a class="navbar-brand" href="/" style = "color:black; font-family"><h2>PINFBet</h2></a>
+<nav class="navbar navbar-expand-md navbar-light" style="background:black">
+    <a class="navbar-brand" href="/" style = "color:gold; font-family">
+      <img src="{{ asset('images/LogoPINFbet1.png') }}" height="150px">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,7 +10,7 @@
         <ul class="navbar-nav ml-auto">
          @guest
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color:black">{{ __('Login') }}</a>
+                <a class="nav-link" href="#" style="color:gold">{{ __('Login') }}</a>
             </li>
             @if (Route::has('register'))
                 <li class="nav-item">
