@@ -6,11 +6,13 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/css/font-awesome.min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <style>
             .fakeimg { height: 100px; background: #aaa; }
             .aFooter{ text-decoration: none; color: #d4ac0d;}
-            .footer{ position: fixed; left: 0; bottom: 0; width: 100%;}
+            .footer{ left: 0; bottom: 0; width: 100%;}
             .ulEspaciado{padding-top: 5px;}
             .estiloOl{font-size: 30px; font-family: 'Quicksand', sans-serif; font-weight: bold; color: #9b9b9b;}
             .zoom {transition: transform .2s; /* Animation */}
@@ -21,23 +23,16 @@
             .btn-circle {width: 30px; height: 30px; padding: 6px 0px; border-radius: 15px; text-align: center; font-size: 12px; line-height: 1.42857;}
             .badge {padding-left: 9px; padding-right: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;}
             .label-warning[href], .badge-warning[href] { background-color: #c67605; }
+            a:hover {color: #71d500}
             #lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
         </style>
         @yield('titulo')
     </head>
     <body style="background: black">
         @include('layouts.header')
-        <div class="container-fluid" style="margin-top:20px; background:gray; width:99%">
-            @yield('content-center')
-            <div class="row">
-                <div class ="col-sm-10">
-                    @yield('content')
-                </div>
-            </div>
-            <!-- Sección -> Más vendidos -->
-            <div class="col-sm-2 sidenav" style="background-color: gray">
-                @yield('advertisement')
-            </div>
+        @include('layouts.navbar')
+        <div class="container-fluid" style="background:gray; width:99%">
+            @yield('content')
         </div>
         @include ('layouts.footer')
         <!-- Loading Javascripts -->
