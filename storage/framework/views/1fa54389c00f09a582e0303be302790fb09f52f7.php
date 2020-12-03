@@ -6,20 +6,35 @@
 <!-- BLOCK: CENTER -->
 <?php $__env->startSection('content'); ?>
 <div class="row">
-    <div class ="col-sm-9">
-    <h3>Apuestas de hoy</h3>
-    <!-- Bloque del centro-->
-  </div>
-  <div class="col-sm-3" style="background-color: gray">
-    <!-- SECTION: anuncios -->
-    <h2>Anuncios</h2>
-    <div class="card card-body bg-faded" style="background-color: #0ff; margin-bottom:15px;">
-      <?php echo $__env->make('anuncios.anuncio1', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="<?php echo e(asset('images/felicidad.png')); ?>" alt="Felicidad" width="100%">
+        </div>
+        <div class="carousel-item">
+          <img src="<?php echo e(asset('images/promo_amigo.png')); ?>" alt="Por cada amigo una creditcoin" width="100%">
+        </div>
+        <div class="carousel-item">
+          <img src="<?php echo e(asset('images/promo_nuevo.png')); ?>" alt="Nuevo, keep calm, registrate y te regalamos 5 creditcoins" width="100%">
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
     </div>
-    <div class="card card-body bg-light" style="margin-bottom:15px;">
-      <?php echo $__env->make('anuncios.anuncio2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-  </div>
 </div>
 <?php $__env->stopSection(); ?>
 
