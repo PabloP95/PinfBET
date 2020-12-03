@@ -24,6 +24,7 @@
             .badge {padding-left: 9px; padding-right: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;}
             .label-warning[href], .badge-warning[href] { background-color: #c67605; }
             a:hover {color: #71d500}
+            a:link, a:visited, a:active {text-decoration:none;}
             #lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
         </style>
         @yield('titulo')

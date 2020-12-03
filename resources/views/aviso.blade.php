@@ -1,14 +1,14 @@
 <!-- SECTION: Menu principal -->
 @extends('layouts.master')
 @section('titulo')
-    <title>PINFBet</title>
+    <title>Aviso legal</title>
 @endsection
 <!-- LAYOUT: CENTER -->
 <!-- BLOCK: CENTER -->
 @section('content')
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1>Aviso legal</h1>      
+    <h1>Aviso legal</h1>
   </div>
 </div>
 <div class="container p-3 my-3 text-white">
