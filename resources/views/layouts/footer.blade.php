@@ -1,7 +1,7 @@
 <!-- <hr class="clearfix v='100' b-md-noun"> -->
 <div class="footer" style="background:black">
   <div class="row" style="width:100%">
-      <div class="col mx-auto clearfix" style="padding-left: 3.5em;">
+      <div class="col mx-auto clearfix" style="padding-left: 20%;">
           <br>
           <b style="color:gold">Acerca de</b>
           <ul class="list-unstyled ulEspaciado">

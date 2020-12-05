@@ -35,6 +35,7 @@
         <div class="container-fluid" style="background:gray; width:99%">
             @yield('content')
         </div>
+        @include('layouts.messbar')
         @include ('layouts.footer')
         <!-- Loading Javascripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
