@@ -20,7 +20,7 @@
             <p>PINFbet es una idea orginal de PINF S.L., encargada a Grupo 5 S.L., siendo el primero un mecenazgo de ideas y aporte para dar vida esta emocionante e interesante web, donde no solo poder compartir tus triunfos academicos, sino darle emoción a la vez que lo consigues.</p>
             <p>Respecto a Grupo 5 S.L. somos una empresa de desarrollo y soluciones informáticas, en las que la satisfacción es nuestro sello de garantía y el secreto ponerle todo nuestro empeño y creatividad en cada proyecto.</p>
             <p>Juntos PINF S.L. y Grupo 5 S.L. por medio del tandem empresarial realizado este proyecto se encuentra vivo y activo, motivando al alumnado del Grado de Ingeniería Informática a alcanzar mejores resultados y de paso divertirse, porque no son incompatibles entre si.</p>
-        </div>    
+        </div>
     </div>
     <p class="row" style="height: 40px"></p>
     <div class="row">
@@ -29,14 +29,14 @@
             <p>Los primeros pasos, papel encargado de ello el personal de analisis, viendo con antelación la posibilidad de crecimiento del proyecto por su madurez y evolución.</p>
             <p>Continuado por el desarrollo y puesta en marcha de la idea en el papel a la existencia en funcionalidades encargado por el conjunto de desarrolladores del sitio web, trabajando por bloques que una vez finalizados encajan a la perfección.</p>
             <p>Y la armonización de todas las piezas dirigidas por el manager del proyecto, que atento y con mimo ha ido viendo las necesidades del equipo y del proyecto para que todo acabe encajando.</p>
-       </div>    
+       </div>
         <div class="col-4 align-self-center">
             <img src="{{ asset('images/programando.jpg') }}" class="img-thumbnail" alt="Equipo 5 S.L." width="100%" style="display: block; margin: auto;">
         </div>
     </div>
     <p class="row" style="height: 40px"></p>
     <div class="row">
-        <p>Si te intersa el proyecto y te gustaría unirte a nuestro equipo puedes enviar tu CV al siguiente correo y valoraremos tu propuesta: empleo@pinfbet.com</p>
+        <p>Si te interesa el proyecto y te gustaría unirte a nuestro equipo puedes enviar tu CV al siguiente correo y valoraremos tu propuesta: empleo@pinfbet.com</p>
     </div>
 </div>
 @endsection
