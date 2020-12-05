@@ -32,7 +32,7 @@
     <body style="background: black">
         @include('layouts.header')
         @include('layouts.navbar')
-        <div class="container-fluid" style="background:gray; width:99%">
+        <div class="container-fluid" style="background:gray; width:99%;">
             @yield('content')
         </div>
         @include('layouts.messbar')
