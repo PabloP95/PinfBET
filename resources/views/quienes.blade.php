@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-8 text-justify">
             <p>El equipo que ha hecho posible PINFbet es un grupo de trabajo donde no solo se trabaja, sino que se comparten experiencias, momentos de trabajo y momentos de esparcimiento. En los resultados esta visto el equipo lo conforman grandes profesionales, que sin ellos no habría sido posible el desarrollo de este sitio.</p>
-            <p>Los primeros pasos, papel encargado de ello el personal de analisis, viendo con antelación la posibilidad de crecimiento del proyecto por su madurez y evolución.</p>
+            <p>Los primeros pasos, papel encargado de ello el personal de análisis, viendo con antelación la posibilidad de crecimiento del proyecto por su madurez y evolución.</p>
             <p>Continuado por el desarrollo y puesta en marcha de la idea en el papel a la existencia en funcionalidades encargado por el conjunto de desarrolladores del sitio web, trabajando por bloques que una vez finalizados encajan a la perfección.</p>
             <p>Y la armonización de todas las piezas dirigidas por el manager del proyecto, que atento y con mimo ha ido viendo las necesidades del equipo y del proyecto para que todo acabe encajando.</p>
        </div>
