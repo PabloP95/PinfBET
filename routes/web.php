@@ -24,3 +24,8 @@ Route::get('/aviso-legal/', function(){
 Route::get('/quienes-somos/', function(){
     return view('quienes');
 });
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

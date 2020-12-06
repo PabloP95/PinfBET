@@ -33,7 +33,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @var string
      */
-    const VERSION = '8.14.0';
+    const VERSION = '8.17.2';
 
     /**
      * The base path for the Laravel installation.
@@ -1179,6 +1179,16 @@ class Application extends Container implements ApplicationContract, CachesConfig
     public function getLocale()
     {
         return $this['config']->get('app.locale');
+    }
+
+    /**
+     * Get the current application locale.
+     *
+     * @return string
+     */
+    public function currentLocale()
+    {
+        return $this->getLocale();
     }
 
     /**

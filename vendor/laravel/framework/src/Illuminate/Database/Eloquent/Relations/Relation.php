@@ -56,6 +56,20 @@ abstract class Relation
     public static $morphMap = [];
 
     /**
+     * Indicates if the morph relation type should default to table name.
+     *
+     * @var bool
+     */
+    public static $tableNameAsMorphType = false;
+
+    /**
+     * The count of self joins.
+     *
+     * @var int
+     */
+    protected static $selfJoinCount = 0;
+
+    /**
      * Create a new relation instance.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -214,6 +228,17 @@ abstract class Relation
     }
 
     /**
+     * Get a relationship join table hash.
+     *
+     * @param  bool $incrementJoinCount
+     * @return string
+     */
+    public function getRelationCountHash($incrementJoinCount = true)
+    {
+        return 'laravel_reserved_'.($incrementJoinCount ? static::$selfJoinCount++ : static::$selfJoinCount);
+    }
+
+    /**
      * Get all of the primary keys for an array of models.
      *
      * @param  array  $models
@@ -339,6 +364,16 @@ abstract class Relation
         }
 
         return static::$morphMap;
+    }
+
+    /**
+     * Specifies that the morph types should be table names.
+     *
+     * @return void
+     */
+    public static function tableNameAsMorphType()
+    {
+        self::$tableNameAsMorphType = true;
     }
 
     /**
