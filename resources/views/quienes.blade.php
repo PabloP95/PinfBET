@@ -8,7 +8,7 @@
 @section('content')
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1>Quienes somos</h1>
+        <h2>Quienes somos</h2>
     </div>
 </div>
 <div class="container p-3 text-white">

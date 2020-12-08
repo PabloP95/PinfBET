@@ -12,6 +12,8 @@
         <style>
             .fakeimg { height: 100px; background: #aaa; }
             .aFooter{ text-decoration: none; color: #d4ac0d;}
+            .aContenido{ text-decoration: none; color: #71d500;}
+            .aContenido:hover{ text-decoration: none; color: #d4ac0d;}
             .footer{ left: 0; bottom: 0; width: 100%;}
             .ulEspaciado{padding-top: 5px;}
             .estiloOl{font-size: 30px; font-family: 'Quicksand', sans-serif; font-weight: bold; color: #9b9b9b;}
@@ -25,6 +27,12 @@
             .label-warning[href], .badge-warning[href] { background-color: #c67605; }
             a:hover {color: #71d500}
             a:link, a:visited, a:active {text-decoration:none;}
+            .form-control {color: white; background-color: gray;}
+            .form-control:focus {color: white; background-color: gray;}
+            .btn-primary {border-color: #71d500; background-color: #71d500;}
+            .btn-primary:hover {border-color: #d4ac0d; background-color: #d4ac0d;}
+            .btn-primary:not(:disabled):not(.disabled):active { border-color: #d4ac0d; background-color: #d4ac0d; color: #0d0d0d;}
+            .jumbotron{color: black}
             #lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
         </style>
         @yield('titulo')
@@ -32,7 +40,7 @@
     <body style="background: black">
         @include('layouts.header')
         @include('layouts.navbar')
-        <div class="container-fluid" style="background:gray; width:99%;">
+        <div class="container-fluid" style="background:gray; width:99%; color: white">
             @yield('content')
         </div>
         @include('layouts.messbar')
