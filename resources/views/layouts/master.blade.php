@@ -29,9 +29,11 @@
             a:link, a:visited, a:active {text-decoration:none;}
             .form-control {color: white; background-color: gray;}
             .form-control:focus {color: white; background-color: gray;}
-            .btn-primary {border-color: #71d500; background-color: #71d500;}
-            .btn-primary:hover {border-color: #d4ac0d; background-color: #d4ac0d;}
-            .btn-primary:not(:disabled):not(.disabled):active { border-color: #d4ac0d; background-color: #d4ac0d; color: #0d0d0d;}
+            .btn-primary, primary:not(:disabled):not(.disabled):active
+            {border-color: #71d500; background-color: #71d500; box-shadow: 0 0 0 .2rem rgb(113, 213, 0);}
+            .btn-primary:hover,
+            .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):focus, btn-primary:focus, .btn:focus
+            { border-color: #d4ac0d; background-color: #d4ac0d; color: #0d0d0d; box-shadow: 0 0 0 .2rem rgb(212, 172, 13);}
             .jumbotron{color: black}
             #lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
         </style>

@@ -25,6 +25,9 @@ Route::get('/quienes-somos/', function(){
     return view('quienes');
 });
 
+Route::get('/perfil', function () {
+    return view('perfil');
+})->middleware('auth');
 
 Auth::routes();
 
