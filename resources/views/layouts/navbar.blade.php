@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
+  <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link" href="/">Inicio</a>
     </li>
@@ -9,11 +9,8 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li >
-
-        <ul class=" nav navbar-nav navbar-right">
+  </ul>
+  <ul class="navbar-nav ml-auto">
          @guest
 
         @if (Route::has('login'))
@@ -57,5 +54,5 @@
 
         </li>
         @endguest
-    </ul>
+      </ul>
 </nav>
