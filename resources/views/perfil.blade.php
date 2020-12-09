@@ -23,7 +23,7 @@
                     <h2>Perfil de {{ Auth::user()->name }}</h2>
                 </div>
             </div>
-            <div class="container">    
+            <div class="container">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="panel panel-primary">
@@ -32,10 +32,10 @@
                             <b>Su e-Mail</b><br>
                             {{ Auth::user()->email }}<br><br>
                             <b>CreditCoins disponibles</b><br>
-                            0<br><br>
+                            {{ Auth::user()->creditCoins}}<br><br>
                         </div>
                     </div>
-                    <div class="col-sm-4"> 
+                    <div class="col-sm-4">
                         <div class="panel panel-primary">
                             <b>Apuestas ganadas</b><br>
                             0<br><br>
