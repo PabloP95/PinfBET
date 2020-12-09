@@ -15,7 +15,7 @@
                 <a class="nav-link" href="{{ route('login') }}" style="color:gold">{{ __('Iniciar Sesión') }}</a>
             </li>
         @endif
-        
+
         @if (Route::has('register'))
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}" style="color:gold">{{ __('Regístrate') }}</a>
@@ -28,16 +28,27 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" style="color:gold" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/perfil">
+                    {{ __('Mi perfil') }}
+                </a>
+
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                     {{ __('Salir') }}
                 </a>
-
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
+
             </div>
+
+
+
+
+
+
         </li>
         @endguest
 
