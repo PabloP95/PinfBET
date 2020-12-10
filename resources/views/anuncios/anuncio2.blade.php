@@ -1,3 +1,7 @@
-<h4 class="card-title">Anuncio 2</h4>
-<p class="card-text">Aqui pondremos un texto para el anuncio.</p>
-<a href="#" class="btn btn-primary">Boton anuncio 2</a>
+<div class="well">
+    <img src="{{ asset('/images/getMeTheMoney.png') }}" height="20%"/>
+</div>
+<hr>
+<div class="well">
+    <img src="{{ asset('/images/getMeTheMoney2.png') }}" height="20%"/>
+</div>
