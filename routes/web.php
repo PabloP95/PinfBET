@@ -29,6 +29,8 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->middleware('auth');
 
+Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
