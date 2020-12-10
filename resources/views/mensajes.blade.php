@@ -26,13 +26,13 @@
             <div class="container">
                 <h2>Enviados</h2>
                 @foreach ($enviados as $e)
-                <p>{{$e->texto}}</p><br>
+                <b>{{$e->texto}}</b><br>
                 @endforeach
             </div>
             <div class="container">
                 <h2>Recibidos</h2>
                 @foreach ($recibidos as $r)
-                <p>{{$r->texto}}</p><br>
+                <b>{{$r->texto}}</b><br>
                 @endforeach
             </div>
 
