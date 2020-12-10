@@ -1,7 +1,7 @@
 <!-- SECTION: Menu principal -->
 @extends('layouts.master')
 @section('titulo')
-<title>Quienes somos</title>
+<title>Mi Perfil</title>
 @endsection
 <!-- LAYOUT: CENTER -->
 <!-- BLOCK: CENTER -->
