@@ -9,13 +9,7 @@
 <div class="container p-3 text-white">
     <div class="row content">
         <div class="col-sm-2 sidenav">
-            <div class="well">
-                <img src="{{ asset('/images/getMeTheMoney2.png') }}" height="20%"/>
-            </div>
-            <hr>
-            <div class="well">
-                <img src="{{ asset('/images/getMeTheMoney.png') }}" height="20%"/>
-            </div>
+            @include('anuncios.anuncio1')
         </div>
         <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
@@ -29,6 +23,8 @@
                         <div class="panel panel-primary">
                             <b>Nombre del usuario</b><br>
                             {{ Auth::user()->name }}<br><br>
+                            <b>Apellidos del usuario</b><br>
+                            {{ Auth::user()->appelidos }}<br><br>
                             <b>Su e-Mail</b><br>
                             {{ Auth::user()->email }}<br><br>
                             <b>CreditCoins disponibles</b><br>
@@ -49,17 +45,42 @@
                 </div>
             </div><br><br>
             <hr>
-            <h3>Actualiza tu información</h3>
-            <p>Formulario para cambiar los datos que se puedan</p>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <img src="{{ asset('/images/getMeTheMoney.png') }}" height="20%"/>
+            <h3>Datos del expediente</h3>
+            <br>
+            <h5>Tabla de calificaciones</h5>
+            <p>Recuerda que la información que se visualiza a continuación es obtenido del expediente facilitado.</p>                                                                                      
+            <div class="table-responsive">          
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Siglas</th>
+                            <th>Nota</th>
+                            <th>Apuestas acertadas</th>
+                            <th>Apuestas realizadas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{--@foreach ($asignaturas as $asignatura) --}}
+                        <tr>
+                            <td>{{-- $asignatura->name --}}</td>
+                            <td>{{-- $asignatura->sigla --}}</td>
+                            <td>{{-- $asignatura->nota --}}</td>
+                            <td>{{-- $asignatura->acertadas --}}</td>
+                            <td>{{-- $asignatura->realizadas --}}</td>
+                        </tr>
+                        {{--@endforeach --}}
+                    </tbody>
+                </table>
             </div>
             <hr>
-            <div class="well">
-                <img src="{{ asset('/images/getMeTheMoney2.png') }}" height="20%"/>
-            </div>
+            <br><br>
+            {{--@if ($propietario)--}}
+                @include('perfil_cambio_datos')
+            {{--@endif--}}
+        </div>
+        <div class="col-sm-2 sidenav">
+            @include('anuncios.anuncio2')
         </div>
     </div>
 </div>
