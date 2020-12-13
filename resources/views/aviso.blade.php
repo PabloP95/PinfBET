@@ -39,7 +39,7 @@
 <p>A tal efecto, usted está obligado y comprometido a NO utilizar cualquiera de los contenidos del sitio Web con fines o efectos ilícitos, prohibidos en este Aviso Legal o por la legislación vigente, lesivos de los derechos e intereses de terceros, o que de cualquier forma puedan dañar, inutilizar, sobrecargar, deteriorar o impedir la normal utilización de los contenidos, los equipos informáticos o los documentos, archivos y toda clase de contenidos almacenados en cualquier equipo informático propios o contratados por el Titular, de otros usuarios o de cualquier usuario de Internet.</p>
 <h4>Registro</h4>
 <p>Todo usuario de la plataforma debe ser alumno matriculado de la Escuela de Ingeniería de la Universidad de Cádiz en el Grado en Ingeniería Informática del presente curso en el que se desee participar.</p>
-<p>El plazo para presentar la matrícula finaliza el 31 de Octubre de cada curso lectivo, siendo que la plataforma se reserva el derecho de bloquear cualquier cuenta que no cumpla con dicho requisito.</p>
+<p>El plazo para indicar las asignaturas matriculadas del curso finaliza el 31 de Octubre de cada curso lectivo, siendo que la plataforma se reserva el derecho de bloquear cualquier cuenta que no cumpla con dicho requisito.</p>
 <p>Aquel usuario que no se considere como registrado no podrá realizar, ni cobrar apuestas aun habiendo estado registrado en cursos anteriores.</p>
 <h5>Compromiso de facilitación de notas</h5>
 <p>Todo aquel usuario que se registra en la plataforma adquiere un compromiso en el que cede y facilitará las notas obtenidas en las asignaturas en las distintas convocatorias, siendo que para cada una existe una fecha límite.</p>
@@ -77,7 +77,8 @@
 <p>
 <ul>
     <li>El incumplimiento de la cláusula de Confidencialidad supondrá el bloqueo automatizado de la cuenta del usuario, una vez conocidos los hechos y cotejados por el sitio web.</li>
-    <li>No subir la matrícula en el periodo especificado en el apartado de Registro.</li>
+    <li>No indicar las asignaturas matriculadas en el periodo especificado en el apartado de Registro.</li>
+    <li>Sospechas de haber introducido datos falsos que no correspondan con lo realmente sucedido.</li>
     <li>Tras no cumplir con el plazo establecido para la subida de las notas según cada convocatoria y dado un aviso, pasados 15 días el usuario siga sin haber subido dicha información.</li>
 </ul>
 </p>
