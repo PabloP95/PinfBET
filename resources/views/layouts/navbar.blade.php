@@ -4,10 +4,10 @@
       <a class="nav-link" href="/">Inicio</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/perfil">Mi perfil</a>
+      <a class="nav-link" href="/panel">Mi panel</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="/perfil">Mi perfil</a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
