@@ -10,37 +10,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="/css/propio.css"/>
         <style>
-            .fakeimg { height: 100px; background: #aaa; }
-            .aFooter{ text-decoration: none; color: #d4ac0d;}
-            .aContenido{ text-decoration: none; color: #71d500;}
-            .aContenido:hover{ text-decoration: none; color: #d4ac0d;}
-            .footer{ left: 0; bottom: 0; width: 100%;}
-            .ulEspaciado{padding-top: 5px;}
-            .estiloOl{font-size: 30px; font-family: 'Quicksand', sans-serif; font-weight: bold; color: #9b9b9b;}
-            .zoom {transition: transform .2s; /* Animation */}
-            .zoom:hover {transform: scale(1.08);/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */}
-            .imagen{transition: transform .15s; /* Animation */;}
-            .imagen:hover{ -webkit-transform: scale(1.5); transform: scale(1.5)}
-            .tabla {text-align: center; width: 50px;}
-            .btn-circle {width: 30px; height: 30px; padding: 6px 0px; border-radius: 15px; text-align: center; font-size: 12px; line-height: 1.42857;}
-            .badge {padding-left: 9px; padding-right: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;}
-            .label-warning[href], .badge-warning[href] { background-color: #c67605; }
-            a:hover {color: #71d500}
-            a:link, a:visited, a:active {text-decoration:none;}
-            .form-control {color: white; background-color: gray;}
-            .form-control:focus {color: white; background-color: gray;}
-            .btn-primary, primary:not(:disabled):not(.disabled):active
-            {border-color: #71d500; background-color: #71d500; box-shadow: 0 0 0 .2rem rgb(113, 213, 0);}
-            .btn-primary:hover,
-            .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):focus, btn-primary:focus, .btn:focus
-            { border-color: #d4ac0d; background-color: #d4ac0d; color: #0d0d0d; box-shadow: 0 0 0 .2rem rgb(212, 172, 13);}
-            .jumbotron{color: black}
-            #lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
+            <!-- prueba rapida de estilo -->
         </style>
         @yield('titulo')
     </head>
     <body style="background: black">
+        <a class="ir-arriba" id="myBtn" onclick="topFunction()" title="Volver arriba">
+            <span class=" fa-stack ">
+                <img src="{{ asset('/images/flecha.png') }}" alt="flecha arriba" height="100%" class="mx-auto d-block"/>
+            </span>
+        </a>
         @include('layouts.header')
         @include('layouts.navbar')
         <div class="container-fluid" style="background:gray; width:99%; color: white">
@@ -49,9 +30,12 @@
         @include('layouts.messbar')
         @include ('layouts.footer')
         <!-- Loading Javascripts -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
         <!--<script>window.jQuery || document.write('https://code.jquery.com/jquery-3.3.1.slim.min.js') integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
         <!-- <script src="/js/popper.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/propio.js"></script>
     </body>
 </html>

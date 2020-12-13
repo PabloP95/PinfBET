@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 dic. 2020, 20:01:57
+    Author     : Jordi Güeto Mayavera (Equipo 5)
+*/
+
+.fakeimg { height: 100px; background: #aaa; }
+.aFooter{ text-decoration: none; color: #d4ac0d;}
+.aContenido{ text-decoration: none; color: #71d500;}
+.aContenido:hover{ text-decoration: none; color: #d4ac0d;}
+.footer{ left: 0; bottom: 0; width: 100%;}
+.ulEspaciado{padding-top: 5px;}
+.estiloOl{font-size: 30px; font-family: 'Quicksand', sans-serif; font-weight: bold; color: #9b9b9b;}
+.zoom {transition: transform .2s; /* Animation */}
+.zoom:hover {transform: scale(1.08);/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */}
+.imagen{transition: transform .15s; /* Animation */;}
+.imagen:hover{ -webkit-transform: scale(1.5); transform: scale(1.5)}
+.tabla {text-align: center; width: 50px;}
+.btn-circle {width: 30px; height: 30px; padding: 6px 0px; border-radius: 15px; text-align: center; font-size: 12px; line-height: 1.42857;}
+.badge {padding-left: 9px; padding-right: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; border-radius: 9px;}
+.label-warning[href], .badge-warning[href] { background-color: #c67605; }
+a:hover {color: #71d500}
+a:link, a:visited, a:active {text-decoration:none;}
+.form-control {color: white; background-color: gray;}
+.form-control:focus {color: white; background-color: gray;}
+.btn-primary, primary:not(:disabled):not(.disabled):active
+{border-color: #71d500; background-color: #71d500; box-shadow: 0 0 0 .2rem rgb(113, 213, 0);}
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled):focus, btn-primary:focus, .btn:focus
+{ border-color: #d4ac0d; background-color: #d4ac0d; color: #0d0d0d; box-shadow: 0 0 0 .2rem rgb(212, 172, 13);}
+.jumbotron{color: black}
+#lblCartCount {font-size: 12px; background: #37a098; color: #fff; padding: 0 5px; vertical-align: top;}
+
+.ir-arriba {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 2; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  /*outline: none; /* Remove outline */
+  /*background-color: red; /* Set a background color */
+  color: black; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 40px; /* Increase font size */
+  background-repeat:no-repeat;
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
