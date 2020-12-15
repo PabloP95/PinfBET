@@ -24,7 +24,7 @@
                             <b>Nombre del usuario</b><br>
                             {{ Auth::user()->name }}<br><br>
                             <b>Apellidos del usuario</b><br>
-                            {{ Auth::user()->appelidos }}<br><br>
+                            {{ Auth::user()->surnames }}<br><br>
                             <b>Su e-Mail</b><br>
                             {{ Auth::user()->email }}<br><br>
                             <b>CreditCoins disponibles</b><br>
