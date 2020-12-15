@@ -61,6 +61,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>Proyectos Informáticos</td>
+                            <td>PINF</td>
+                            <td>10</td>
+                            <td>8</td>
+                            <td>24</td>
+                        </tr>
                         {{--@foreach ($asignaturas as $asignatura) --}}
                         <tr>
                             <td>{{-- $asignatura->name --}}</td>
