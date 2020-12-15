@@ -13,15 +13,17 @@
           <br>
           <b style="color:gold">Navegación</b>
           <ul class="list-unstyled ulEspaciado">
-              <li><a href="#" class="small aFooter">Idioma / languages</a></li>
-              <li><a href="#" class="small aFooter">Mapa del sitio</a></li>
+              <li><a href="/" class="small aFooter">Inicio</a></li>
+              <li><a href="{{ route('register') }}" class="small aFooter">Registro</a></li>
+              <li><a href="{{ route('login') }}" class="small aFooter">Login</a></li>
+              <li><a href="/panel" class="small aFooter">Mi perfil</a></li>
+              <li><a href="/perfil" class="small aFooter">Mi panel</a></li>
           </ul>
       </div>
       <div class="col mx-auto clearfix">
           <br>
           <b style="color:gold">Contacto</b>
           <ul class="list-unstyled ulEspaciado">
-              <li><a href="#" class="small aFooter">Atención al cliente</a></li>
               <li><a href="#" class="small aFooter">Twitter</a></li>
               <li><a href="#" class="small aFooter">Facebook</a></li>
               <li><a href="#" class="small aFooter">Youtube</a></li>
