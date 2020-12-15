@@ -22,22 +22,25 @@
                     <h3>Contactos</h3>
                 </div>
                 <div class="col-sm-8">
-                    
-                </div>
+                    <h2>Enviados</h2>
+                    @foreach ($enviados as $e)
+                    <b>{{$e->texto}}</b><br>
+                    @endforeach
+                    <h2>Recibidos</h2>
+                    @foreach ($recibidos as $r)
+                    <b>{{$r->texto}}</b><br>
+                    @endforeach
+                    <hr>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                    </div>
+                    <hr>
+                </div> 
             </div> 
             <div class="container">
-                <h2>Enviados</h2>
-                @foreach ($enviados as $e)
-                <b>{{$e->texto}}</b><br>
-                @endforeach
-            </div>
-            <div class="container">
-                <h2>Recibidos</h2>
-                @foreach ($recibidos as $r)
-                <b>{{$r->texto}}</b><br>
-                @endforeach
-            </div>
 
+            </div>
         </div>
 
         <div class="col-sm-2 sidenav">
