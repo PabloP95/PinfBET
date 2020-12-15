@@ -69,13 +69,13 @@
                             <td>24</td>
                         </tr>
                         {{--@foreach ($asignaturas as $asignatura) --}}
-                        <tr>
+<!--                        <tr>
                             <td>{{-- $asignatura->name --}}</td>
                             <td>{{-- $asignatura->sigla --}}</td>
                             <td>{{-- $asignatura->nota --}}</td>
                             <td>{{-- $asignatura->acertadas --}}</td>
                             <td>{{-- $asignatura->realizadas --}}</td>
-                        </tr>
+                        </tr>-->
                         {{--@endforeach --}}
                     </tbody>
                 </table>
