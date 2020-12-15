@@ -16,8 +16,8 @@
               <li><a href="/" class="small aFooter">Inicio</a></li>
               <li><a href="{{ route('register') }}" class="small aFooter">Registro</a></li>
               <li><a href="{{ route('login') }}" class="small aFooter">Login</a></li>
-              <li><a href="/panel" class="small aFooter">Mi perfil</a></li>
-              <li><a href="/perfil" class="small aFooter">Mi panel</a></li>
+              <li><a href="/perfil" class="small aFooter">Mi perfil</a></li>
+              <li><a href="/panel" class="small aFooter">Mi panel</a></li>
           </ul>
       </div>
       <div class="col mx-auto clearfix">
