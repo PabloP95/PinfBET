@@ -3,11 +3,11 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 13 dic. 2020, 20:01:57
     Author     : Jordi Güeto Mayavera (Equipo 5)
 */
-body{cursor:pointer;}
+body{}
 .fakeimg { height: 100px; background: #aaa; }
 .aFooter{ text-decoration: none; color: #d4ac0d;}
 .aContenido{ text-decoration: none; color: #71d500;}
