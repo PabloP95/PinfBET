@@ -47,14 +47,44 @@ class MensajeController extends Controller
      */
     public function show($id)
     {
-        $enviados = DB::table('mensaje')
+        $mensajes  = DB::table('mensaje')
                               ->where('emisor', $id)
+                              ->orWhere('receptor', $id)
+                              ->orderBy('fecha', 'desc')
                               ->get();
-        $recibidos = DB::table('mensaje')
-                              ->where('receptor', $id)
-                              ->get();
-        return view('mensajes', ['enviados' => $enviados, 'recibidos' => $recibidos]);
+
+        $amigos    = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
+
+
+        return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
     }
+
+    public function showAll($idUser, $idFriend)
+    {
+        $mensajes  = DB::table('mensaje')
+                              ->where([['emisor', '=', $idUser], ['receptor', '=', $idFriend]])
+                              ->orWhere([['emisor', '=', $idFriend], ['receptor', '=', $idUser]])
+                              ->orderBy('fecha', 'asc')
+                              ->distinct()
+                              ->get();
+
+        $amigo    = DB::select("SELECT * FROM users WHERE id = $idFriend");
+
+
+        return view('chat', ['mensajes' => $mensajes, 'amigo' => $amigo]);
+    }
+
+    protected function subirMensaje(Request $request, $idus, $idamig){
+        if(!empty($request->input('mensaje'))){
+                DB::table('mensaje')->insert([
+                'texto' => $request->input('mensaje'),
+                'emisor' =>  $idus,
+                'receptor' =>  $idamig]);
+
+        }
+        return redirect('/chat/'.$idus.'/'.$idamig);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

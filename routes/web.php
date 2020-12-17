@@ -35,6 +35,9 @@ Route::get('/panel', function () {
 
 Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show'])->middleware('auth');
 
+Route::get('/chat/{idUser}/{idFriend}', [App\Http\Controllers\MensajeController::class, 'showAll'])->middleware('auth');
+Route::post('/chat/{idUser}/{idFriend}', [App\Http\Controllers\MensajeController::class, 'subirMensaje'])->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

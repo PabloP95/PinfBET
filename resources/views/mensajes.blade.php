@@ -22,22 +22,32 @@
                     <h3>Contactos</h3>
                 </div>
                 <div class="col-sm-8">
-                    <h2>Enviados</h2>
-                    @foreach ($enviados as $e)
-                    <b>{{$e->texto}}</b><br>
-                    @endforeach
-                    <h2>Recibidos</h2>
-                    @foreach ($recibidos as $r)
-                    <b>{{$r->texto}}</b><br>
-                    @endforeach
+                    <h2>Conversaciones</h2>
+
+                    <?php
+                    foreach ($amigos as $a){
+
+                        echo "<a href='/chat/".Auth::User()->id."/".$a->id."' class='small aFooter'>".$a->name." ".$a->surnames."</a><br>";
+
+                        foreach($mensajes as $m){
+                            if( $m->emisor == $a->id && $m->receptor == Auth::User()->id ||
+                                $m->emisor == Auth::User()->id && $m->receptor == $a->id){
+                                    echo "<p>".$m->texto."</p>";
+                                    break;
+                                }
+                        }
+                    }
+                    ?>
+
+
                     <hr>
                     <div class="form-group">
                         <label for="comment">Comment:</label>
                         <textarea class="form-control" rows="3" id="comment"></textarea>
                     </div>
                     <hr>
-                </div> 
-            </div> 
+                </div>
+            </div>
             <div class="container">
 
             </div>
