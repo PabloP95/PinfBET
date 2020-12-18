@@ -19,7 +19,7 @@
                     </div>
                     <div class=" col-sm-1 align-content-sm-end">
                         <div class="row">
-                            <h3>{{ Auth::user()->creditcoin }}</h3>
+                            <h3>{{ Auth::user()->creditCoins}}</h3>
                             <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 40px"/>
                         </div>
                     </div>                    
@@ -67,10 +67,10 @@
                                     Grupo 5
                                 </div>
                                 <div class="col-sm-4 text-right">
-                                    50 <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    50 <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="30px"/>
+                                    <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="40px"/>
                                 </div>
                             </div>
                             {{--@foreach ($amigos as $amigo) --}}
@@ -79,10 +79,10 @@
                                     {{-- $aamigo->usuarioName --}}
                                 </div>
                                 <div class="col-sm-4 text-right">
-                                    {{-- $amigo->creditcpoins --}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    {{-- $amigo->creditcpoins --}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="30px"/>
+                                    <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="40px"/>
                                 </div>
                             </div>-->
                             {{--@endforeach --}}
@@ -98,10 +98,10 @@
                                     Grupo 6
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="20px"/>
+                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="25px"/>
                                 </div>
                             </div>
                             {{--@foreach ($conocidos as $conocido) --}}
@@ -110,10 +110,10 @@
                                     {{-- $conocido->usuarioName --}}
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="20px"/>
+                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="25px"/>
                                 </div>
                             </div>-->
                             {{--@endforeach --}}
@@ -132,7 +132,7 @@
                                     Grupo 6
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
                                 </div>
                             </div>
                             {{--@foreach ($buscados as $buscado) --}}
@@ -141,7 +141,7 @@
                                     {{-- $buscado->usuarioName --}}
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 20px"/>
+                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
                                 </div>
                             </div>-->
                             {{--@endforeach --}}
