@@ -6,16 +6,16 @@ use App\Models\Mensaje;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
-class MensajeController extends Controller
-{
+class MensajeController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -24,8 +24,8 @@ class MensajeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
+        
     }
 
     /**
@@ -34,8 +34,7 @@ class MensajeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -45,46 +44,43 @@ class MensajeController extends Controller
      * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $mensajes  = DB::table('mensaje')
-                              ->where('emisor', $id)
-                              ->orWhere('receptor', $id)
-                              ->orderBy('fecha', 'desc')
-                              ->get();
+    public function show($id) {
+        $mensajes = DB::table('mensaje')
+                ->where('emisor', $id)
+                ->orWhere('receptor', $id)
+                ->orderBy('fecha', 'desc')
+                ->get();
 
-        $amigos    = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
+        $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
 
 
         return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
     }
 
-    public function showAll($idUser, $idFriend)
-    {
-        $mensajes  = DB::table('mensaje')
-                              ->where([['emisor', '=', $idUser], ['receptor', '=', $idFriend]])
-                              ->orWhere([['emisor', '=', $idFriend], ['receptor', '=', $idUser]])
-                              ->orderBy('fecha', 'asc')
-                              ->distinct()
-                              ->get();
+    public function showAll($idUser, $idFriend) {
+        $mensajes = DB::table('mensaje')
+                ->where([['emisor', '=', $idUser], ['receptor', '=', $idFriend]])
+                ->orWhere([['emisor', '=', $idFriend], ['receptor', '=', $idUser]])
+                ->orderBy('fecha', 'asc')
+                ->distinct()
+                ->get();
 
-        $amigo    = DB::select("SELECT * FROM users WHERE id = $idFriend");
+        $amigo = DB::select("SELECT * FROM users WHERE id = $idFriend");
 
 
         return view('chat', ['mensajes' => $mensajes, 'amigo' => $amigo]);
     }
 
-    protected function subirMensaje(Request $request, $idus, $idamig){
-        if(!empty($request->input('mensaje'))){
-                DB::table('mensaje')->insert([
+    protected function subirMensaje(Request $request, $idus, $idamig) {
+        if (!empty($request->input('mensaje'))) {
+            DB::table('mensaje')->insert([
                 'texto' => $request->input('mensaje'),
-                'emisor' =>  $idus,
-                'receptor' =>  $idamig]);
-
+                'fecha' => Carbon::now()->toDateTimeString(),
+                'emisor' => $idus,
+                'receptor' => $idamig]);
         }
-        return redirect('/chat/'.$idus.'/'.$idamig);
+        return redirect('/chat/' . $idus . '/' . $idamig);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -92,8 +88,7 @@ class MensajeController extends Controller
      * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mensaje $mensaje)
-    {
+    public function edit(Mensaje $mensaje) {
         //
     }
 
@@ -104,8 +99,7 @@ class MensajeController extends Controller
      * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mensaje $mensaje)
-    {
+    public function update(Request $request, Mensaje $mensaje) {
         //
     }
 
@@ -115,8 +109,7 @@ class MensajeController extends Controller
      * @param  \App\Models\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mensaje $mensaje)
-    {
+    public function destroy(Mensaje $mensaje) {
         //
     }
 }
