@@ -20,26 +20,25 @@
             <div class="row">
                 <div class="col-sm-4">
                     <h3>Contactos</h3>
+                    @foreach ($amigos as $a)
+                    <a href="#{{$a->name}}{{$a->surnames}}" aria-controls="{{$a->name}}{{$a->surnames}}" role="tab" data-toggle="tab">{{$a->name}} {{$a->surnames}}</a><br>
+                    @endforeach
                 </div>
                 <div class="col-sm-8">
                     <h2>Conversaciones</h2>
-
-                    <?php
-                    foreach ($amigos as $a){
-
-                        echo "<a href='/chat/".Auth::User()->id."/".$a->id."' class='small aFooter'>".$a->name." ".$a->surnames."</a><br>";
-
-                        foreach($mensajes as $m){
-                            if( $m->emisor == $a->id && $m->receptor == Auth::User()->id ||
-                                $m->emisor == Auth::User()->id && $m->receptor == $a->id){
-                                    echo "<p>".$m->texto."</p>";
-                                    break;
-                                }
-                        }
-                    }
-                    ?>
-
-
+                    @foreach ($mensajes as $m)
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="{{$a->name}}{{$a->surnames}}">
+                            @if (Auth::User()->id == $m->emisor)
+                            <!--//Si lo envio yo debería ponerse a la derecha-->
+                            <b>Yo:{{$m->texto}}</b><br><br>
+                            @else
+                            <!--//Si me lo envian debería ponerse a la izquierda-->
+                            <b>{{$a->name}} {{$a->surnames}}:{{$m->texto}}</b><br><br>
+                            @endif
+                        </div>
+                    </div>
+                    @endforeach
                     <hr>
                     <div class="form-group">
                         <label for="comment">Comment:</label>
@@ -52,7 +51,6 @@
 
             </div>
         </div>
-
         <div class="col-sm-2 sidenav">
             @include('anuncios.anuncio2')
         </div>
