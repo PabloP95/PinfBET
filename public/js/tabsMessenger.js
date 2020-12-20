@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 $('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+  e.preventDefault();
+  $(this).tab('show');
+});
 
