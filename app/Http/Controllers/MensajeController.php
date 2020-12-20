@@ -48,14 +48,42 @@ class MensajeController extends Controller {
         $mensajes = DB::table('mensaje')
                 ->where('emisor', $id)
                 ->orWhere('receptor', $id)
-                ->orderBy('fecha', 'desc')
+                ->orderBy('fecha', 'asc')
                 ->get();
 
-        $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
+        $amigos = DB::table('users')
+                ->join('friendlist', 'users.id', '=', 'friendlist.id2')
+                ->where('friendlist.id2','=', $id)
+                ->orwhere('friendlist.id1','=',$id)
+                ->orderBy('name','asc')
+                ->distinct()
+                ->select('users.id','users.name','users.surnames')
+                ->get();
+//        $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
 
 
         return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
     }
+
+    public function subirMensaje(Request $request, $id, $ida) {
+        if (!empty($request->input('mensaje'))) {
+            DB::table('mensaje')->insert([
+                'texto' => $request->input('mensaje'),
+                'fecha' => Carbon::now()->toDateTimeString(),
+                'emisor' => $id,
+                'receptor' => $ida]);
+            $mensajes = DB::table('mensaje')
+                    ->where('emisor', $id)
+                    ->orWhere('receptor', $id)
+                    ->orderBy('fecha', 'asc')
+                    ->get();
+
+            $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
+        }
+        return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
+    }
+
+//    FUNCIONES DEL CHAT
 
     public function showAll($idUser, $idFriend) {
         $mensajes = DB::table('mensaje')
@@ -71,16 +99,16 @@ class MensajeController extends Controller {
         return view('chat', ['mensajes' => $mensajes, 'amigo' => $amigo]);
     }
 
-    protected function subirMensaje(Request $request, $idus, $idamig) {
-        if (!empty($request->input('mensaje'))) {
-            DB::table('mensaje')->insert([
-                'texto' => $request->input('mensaje'),
-                'fecha' => Carbon::now()->toDateTimeString(),
-                'emisor' => $idus,
-                'receptor' => $idamig]);
-        }
-        return redirect('/chat/' . $idus . '/' . $idamig);
-    }
+//    protected function subirMensaje(Request $request, $idus, $idamig) {
+//        if (!empty($request->input('mensaje'))) {
+//            DB::table('mensaje')->insert([
+//                'texto' => $request->input('mensaje'),
+//                'fecha' => Carbon::now()->toDateTimeString(),
+//                'emisor' => $idus,
+//                'receptor' => $idamig]);
+//        }
+//        return redirect('/chat/' . $idus . '/' . $idamig);
+//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -112,4 +140,5 @@ class MensajeController extends Controller {
     public function destroy(Mensaje $mensaje) {
         //
     }
+
 }
