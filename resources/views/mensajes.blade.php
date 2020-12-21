@@ -40,35 +40,37 @@
                             Selecciona un amigo para ver el chat
                         </div>
                         @foreach($amigos as $a)
-                        <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surnames}}" style="max-height: 400px; overflow: auto">
-                            @foreach($mensajes as $sms)
-                            @if(Auth::User()->id == $sms->emisor || Auth::User()->id == $sms->receptor)
-                            @if(Auth::User()->id == $sms->emisor)
-                            <!--//Si lo envio yo debería ponerse a la derecha-->
-                            <div class="Yo">
-                                <span>{{ $sms->fecha }}</span><br>
-                                <b>Yo:{{ $sms->texto }}</b><br><br>
-                            </div>
-                            @else
-                            <!--//Si me lo envian debería ponerse a la izquierda-->
-                            <div class="d-flex flex-row-reverse">
-                                <div class="contacto">
+                        <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surnames}}" >
+                            <div id="charla" onload="updateScroll()" style="max-height: 400px; overflow: auto">
+                                @foreach($mensajes as $sms)
+                                @if(Auth::User()->id == $sms->emisor || Auth::User()->id == $sms->receptor)
+                                @if(Auth::User()->id == $sms->emisor)
+                                <!--//Si lo envio yo debería ponerse a la derecha-->
+                                <div class="Yo">
                                     <span>{{ $sms->fecha }}</span><br>
-                                    <b>{{ $a->name }} {{ $a->surnames }}:{{ $sms->texto }}</b><br><br>
+                                    <b>Yo:{{ $sms->texto }}</b><br><br>
                                 </div>
+                                @else
+                                <!--//Si me lo envian debería ponerse a la izquierda-->
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="contacto">
+                                        <span>{{ $sms->fecha }}</span><br>
+                                        <b>{{ $a->name }} {{ $a->surnames }}:{{ $sms->texto }}</b><br><br>
+                                    </div>
+                                </div>
+                                @endif
+                                @endif
+                                @endforeach
                             </div>
-                            @endif
-                            @endif
-                            @endforeach
+                            <hr>
+                            <form method="POST" action="/mensajes/{{ Auth::user()->id }}/{{ $a->id }}" id="teclado">
+                                @csrf
+                                <input type="text" name="mensaje" placeholder="Escribe un mensaje">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Enviar') }}
+                                </button>
+                            </form>
                         </div>
-                        <hr>
-                        <form method="POST" action="/mensajes/{{ Auth::user()->id }}/{{ $a->id }}" id="teclado">
-                            @csrf
-                            <input type="text" name="mensaje" placeholder="Escribe un mensaje">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Enviar') }}
-                            </button>
-                        </form>
                         @endforeach
                     </div>
                     @endif
