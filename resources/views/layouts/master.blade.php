@@ -37,5 +37,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/propio.js"></script>
+        <script src="/js/tabsMessenger.js"></script>
     </body>
 </html>
