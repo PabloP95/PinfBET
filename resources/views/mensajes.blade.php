@@ -48,14 +48,14 @@
                                 <!--//Si lo envio yo debería ponerse a la derecha-->
                                 <div class="Yo">
                                     <span>{{ $sms->fecha }}</span><br>
-                                    <b>Yo:{{ $sms->texto }}</b><br><br>
+                                    <b>Yo: {{ $sms->texto }}</b><br><br>
                                 </div>
                                 @else
                                 <!--//Si me lo envian debería ponerse a la izquierda-->
                                 <div class="d-flex flex-row-reverse">
                                     <div class="contacto">
                                         <span>{{ $sms->fecha }}</span><br>
-                                        <b>{{ $a->name }} {{ $a->surnames }}:{{ $sms->texto }}</b><br><br>
+                                        <b>{{ $a->name }} {{ $a->surnames }}: {{ $sms->texto }}</b><br><br>
                                     </div>
                                 </div>
                                 @endif
@@ -65,7 +65,7 @@
                             <hr>
                             <form method="POST" action="/mensajes/{{ Auth::user()->id }}/{{ $a->id }}" id="teclado">
                                 @csrf
-                                <input type="text" autocomplete='off' name="mensaje" placeholder="Escribe un mensaje">
+                                <input type="text" autocomplete='off' name="mensaje" placeholder="Escribe un mensaje" required>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Enviar') }}
                                 </button>
