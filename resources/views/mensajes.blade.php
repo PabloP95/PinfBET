@@ -65,7 +65,7 @@
                             <hr>
                             <form method="POST" action="/mensajes/{{ Auth::user()->id }}/{{ $a->id }}" id="teclado">
                                 @csrf
-                                <input type="text" name="mensaje" placeholder="Escribe un mensaje">
+                                <input type="text" autocomplete='off' name="mensaje" placeholder="Escribe un mensaje">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Enviar') }}
                                 </button>
