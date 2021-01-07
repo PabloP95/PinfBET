@@ -30,6 +30,7 @@ Route::get('/perfil', function () {
 })->middleware('auth');
 
 Route::get('/panel/{id}', [App\Http\Controllers\PanelController::class, 'show'])->middleware('auth');
+Route::post('/panel/{id}', [App\Http\Controllers\PanelController::class, 'buscar'])->middleware('auth');
 
 Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show'])->middleware('auth');
 Route::post('/mensajes/{id}/{ida}', 'MensajeController@subirMensaje')->middleware('auth');
