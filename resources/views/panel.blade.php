@@ -64,30 +64,21 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5>Amigos</h5>
+                            @if(isset($amigos))
+                            @foreach ($amigos as $amigo)
                             <div class="row">
                                 <div class="col-sm-6">
-                                    Grupo 5
+                                    {{$amigo->name}} {{$amigo->surname1}} {{$amigo->surname2}}
                                 </div>
                                 <div class="col-sm-4 text-right">
-                                    50 <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
+                                    {{$amigo->creditCoins}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
                                 </div>
                                 <div class="col-sm-2">
                                     <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="40px"/>
                                 </div>
                             </div>
-                            {{--@foreach ($amigos as $amigo) --}}
-<!--                            <div class="row">
-                                <div class="col-sm-6">
-                                    {{-- $aamigo->usuarioName --}}
-                                </div>
-                                <div class="col-sm-4 text-right">
-                                    {{-- $amigo->creditcpoins --}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="40px"/>
-                                </div>
-                            </div>-->
-                            {{--@endforeach --}}
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                     <br>

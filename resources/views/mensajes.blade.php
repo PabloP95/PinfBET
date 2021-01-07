@@ -43,20 +43,21 @@
                         <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surname1}}{{$a->surname2}}" >
                             <div id="charla" onload="updateScroll()" style="max-height: 400px; overflow: auto">
                                 @foreach($mensajes as $sms)
-                                @if(Auth::User()->id == $sms->emisor || Auth::User()->id == $sms->receptor)
+                                @if((Auth::User()->id == $sms->emisor && $a->id == $sms->receptor) || (Auth::User()->id == $sms->receptor && $a->id == $sms->emisor))
                                 @if(Auth::User()->id == $sms->emisor)
                                 <!--//Si lo envio yo debería ponerse a la derecha-->
-                                <div class="Yo">
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="contacto">
                                     <span>{{ $sms->fecha }}</span><br>
                                     <b>Yo: {{ $sms->texto }}</b><br><br>
+                                    </div>
                                 </div>
                                 @else
                                 <!--//Si me lo envian debería ponerse a la izquierda-->
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="contacto">
+
+                                    <div class="Yo">
                                         <span>{{ $sms->fecha }}</span><br>
                                         <b>{{ $a->name }} {{ $a->surname1 }}: {{ $sms->texto }}</b><br><br>
-                                    </div>
                                 </div>
                                 @endif
                                 @endif

@@ -16,7 +16,12 @@ class PanelController extends Controller {
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
-        return view('panel', ['apuestas' => $apuestas]);
+        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
+                              FROM users u, friendlist f
+                              WHERE u.id != $id and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                              ORDER BY u.name ASC");
+
+        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos]);
     }
 
     public function buscar(Request $request, $id) {

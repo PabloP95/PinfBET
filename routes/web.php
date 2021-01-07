@@ -35,6 +35,7 @@ Route::post('/panel/{id}', [App\Http\Controllers\PanelController::class, 'buscar
 Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show'])->middleware('auth');
 Route::post('/mensajes/{id}/{ida}', 'MensajeController@subirMensaje')->middleware('auth');
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

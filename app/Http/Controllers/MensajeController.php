@@ -51,15 +51,11 @@ class MensajeController extends Controller {
                 ->orderBy('fecha', 'asc')
                 ->get();
 
-        $amigos = DB::table('users')
-                ->join('friendlist', 'users.id', '=', 'friendlist.id2')
-                ->where('friendlist.id2','=', $id)
-                ->orwhere('friendlist.id1','=',$id)
-                ->orderBy('name','asc')
-                ->distinct()
-                ->select('users.id','users.name','users.surname1', 'users.surname2')
-                ->get();
-//        $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
+        $amigos = DB::select("SELECT u.id,u.name, u.surname1, u.surname2, u.creditCoins
+                                FROM users u, friendlist f
+                                WHERE u.id != $id and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                             ORDER BY u.name ASC");
+
 
 
         return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
@@ -80,7 +76,7 @@ class MensajeController extends Controller {
 
             $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
         }
-        return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
+        return redirect('/mensajes/'.$id);
     }
 
 //    FUNCIONES DEL CHAT
