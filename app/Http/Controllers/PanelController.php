@@ -27,10 +27,10 @@ class PanelController extends Controller {
 
 
         if(!empty($request->input('busqueda'))){
-        $buscados = DB::table('users')
-                    ->where(DB::raw('concat(name," ",surname1," ",surname2)'), 'like', "%".$request->input('busqueda')."%")
-                    ->where('id', '!=', $id)
-                    ->get();
+            $buscados = DB::table('users')
+                        ->where(DB::raw('concat(name," ",surname1," ",surname2)'), 'like', "%".$request->input('busqueda')."%")
+                        ->where('id', '!=', $id)
+                        ->get();
         }else{
             $buscados = [];
         }
