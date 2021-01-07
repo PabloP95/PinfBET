@@ -1,7 +1,7 @@
 <!-- SECTION: Menu principal -->
 @extends('layouts.master')
 @section('titulo')
-<title>Mi Perfil</title>
+<title>Mi Panel</title>
 @endsection
 <!-- LAYOUT: CENTER -->
 <!-- BLOCK: CENTER -->
@@ -44,6 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach ($apuestas as $apuesta)
                         <tr>
                             <td>{{$apuesta->name}}</td>
@@ -52,6 +53,7 @@
                             <td>{{$apuesta->cantidad}}</td>
                         </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -124,27 +126,25 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5>Buscador</h5>
-                            <input id="buscador" type="text" class="form-control" name="buscador" value="">
+                            <form id="buscador" method="POST" action="/panel/{{Auth::user()->id}}">
+                                @csrf
+                                <input name="busqueda" type="text" class="form-control" name="buscador" value="" autofocus>
+                                <input type="submit" class="btn btn-primary" name="buscar" value="Buscar">
+                            </form>
                             <br>
                             <h6>Usuarios disponibles</h6>
+                            @if(isset($buscados))
+                            @foreach ($buscados as $buscado)
                             <div class="row">
                                 <div class="col-sm-10">
-                                    Grupo 6
+                                    {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
                                 </div>
                                 <div class="col-sm-2 text-right">
                                     <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
                                 </div>
                             </div>
-                            {{--@foreach ($buscados as $buscado) --}}
-<!--                            <div class="row">
-                                <div class="col-sm-10">
-                                    {{-- $buscado->usuarioName --}}
-                                </div>
-                                <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
-                                </div>
-                            </div>-->
-                            {{--@endforeach --}}
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
