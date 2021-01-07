@@ -42,3 +42,9 @@ Route::post('/chat/{idUser}/{idFriend}', [App\Http\Controllers\MensajeController
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/apuesta/{id}' ,[App\Http\Controllers\ApuestaController::class, 'show'])->middleware('auth');
+Route::post('/apuesta/{id1}/{id2}', [App\Http\Controllers\ApuestaController::class, 'showAsignaturas'])->middleware('auth');
+
+Route::get('/completarApuesta/{id1}/{id2}/{cod_asig}', [App\Http\Controllers\completarApuestaController::class, 'show'])->middleware('auth');
+Route::post('/completarApuesta/subir/{id1}/{id2}/{cod_asig}', [App\Http\Controllers\completarApuestaController::class, 'subirApuesta'])->middleware('auth');

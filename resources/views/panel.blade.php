@@ -16,18 +16,24 @@
                 <div class="container row">
                     <div class="col-sm-11">
                         <h2>Panel social y apuestas de {{ Auth::user()->name }}</h2>
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
                     </div>
+
                     <div class=" col-sm-1 align-content-sm-end">
                         <div class="row">
                             <h3>{{ Auth::user()->creditCoins}}</h3>
                             <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 40px"/>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <br>
-            <h5>Apuestas realizadas</h5>                                                                                     
-            <div class="table-responsive">          
+            <h5>Apuestas realizadas</h5>
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -146,11 +152,11 @@
                             </div>-->
                             {{--@endforeach --}}
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <h5>Posibles apuestas</h5>
-                    <div class="table-responsive">          
+                    <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
