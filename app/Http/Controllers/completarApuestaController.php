@@ -51,7 +51,7 @@ class completarApuestaController extends Controller
             $usu->creditCoins = $request->input('mismonedas') - $request->input('creditCoins');
             $usu->save();
 
-            return redirect('panel')->with('status', '¡Apuesta completada con éxito!');
+            return redirect('panel/'.$id1)->with('status', '¡Apuesta completada con éxito!');
         }else if($request->input('notaApuesta') < 0 || $request->input('notaApuesta') > 10){
             return redirect('completarApuesta/'.$id1.'/'.$id2.'/'.$cod_asig)->with('status', '¡Apuesta no completada, Nota debe ser un valor entre 0 y 10!');
         }else{

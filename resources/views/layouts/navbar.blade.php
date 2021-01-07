@@ -5,7 +5,7 @@
       <a class="nav-link" href="/">Inicio</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/panel">Mi panel</a>
+      <a class="nav-link" href="/panel/{{Auth::user()->id}}">Mi panel</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/perfil">Mi perfil</a>

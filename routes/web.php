@@ -29,9 +29,7 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->middleware('auth');
 
-Route::get('/panel', function () {
-    return view('panel');
-})->middleware('auth');
+Route::get('/panel/{id}', [App\Http\Controllers\PanelController::class, 'show'])->middleware('auth');
 
 Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show'])->middleware('auth');
 Route::post('/mensajes/{id}/{ida}', 'MensajeController@subirMensaje')->middleware('auth');

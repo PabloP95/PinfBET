@@ -44,20 +44,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($apuestas as $apuesta)
                         <tr>
-                            <td>Equipo 5</td>
-                            <td>PINF</td>
-                            <td>10</td>
-                            <td>10.000.000 creditcoins</td>
+                            <td>{{$apuesta->name}}</td>
+                            <td>{{$apuesta->asignatura}}</td>
+                            <td>{{$apuesta->nota}}</td>
+                            <td>{{$apuesta->cantidad}}</td>
                         </tr>
-                        {{--@foreach ($apuestas as $apuesta) --}}
-<!--                        <tr>
-                            <td>{{-- $apuesta->usuarioName --}}</td>
-                            <td>{{-- $apuesta->asignatura --}}</td>
-                            <td>{{-- $apuesta->nota --}}</td>
-                            <td>{{-- $apuesta->cantidad --}}</td>
-                        </tr>-->
-                        {{--@endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
