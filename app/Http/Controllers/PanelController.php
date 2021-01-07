@@ -27,10 +27,17 @@ class PanelController extends Controller {
 
 
         if(!empty($request->input('busqueda'))){
-            $buscados = DB::table('users')
-                        ->where(DB::raw('concat(name," ",surname1," ",surname2)'), 'like', "%".$request->input('busqueda')."%")
-                        ->where('id', '!=', $id)
-                        ->get();
+            $buscados = DB::select("SELECT name, surname1, surname2, id
+                                    FROM users
+                                    WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
+                                    id NOT IN (SELECT id2
+									FROM users u, friendlist f
+									WHERE (u.id = $id and u.id = f.id1)) and
+                                    id NOT IN (SELECT id1
+									FROM users u, friendlist f
+									WHERE (u.id = $id and u.id = f.id2))
+                                    and id != $id");
+
         }else{
             $buscados = [];
         }
