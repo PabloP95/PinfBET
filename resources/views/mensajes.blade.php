@@ -27,7 +27,7 @@
                         @if(isset($amigos))
                         @foreach($amigos as $a)
                         <li role="presentation" class="list-group-item" style="width: 100%; background-color: transparent; border: none">
-                            <a class="btn btn-success" style="width: 100%" href="#{{$a->name}}{{$a->surnames}}" aria-controls="{{$a->name}}{{$a->surnames}}" role="tab" data-toggle="tab">{{$a->name}} {{$a->surnames}}</a><br>
+                            <a class="btn btn-success" style="width: 100%" href="#{{$a->name}}{{$a->surname1}}{{$a->surname2}}" aria-controls="{{$a->name}}{{$a->surname1}}{{$a->surname2}}" role="tab" data-toggle="tab">{{$a->name}} {{$a->surname1}} {{$a->surname2}}</a><br>
                         </li>
                         @endforeach
                         @endif
@@ -40,7 +40,7 @@
                             Selecciona un amigo para ver el chat
                         </div>
                         @foreach($amigos as $a)
-                        <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surnames}}" >
+                        <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surname1}}{{$a->surname2}}" >
                             <div id="charla" onload="updateScroll()" style="max-height: 400px; overflow: auto">
                                 @foreach($mensajes as $sms)
                                 @if(Auth::User()->id == $sms->emisor || Auth::User()->id == $sms->receptor)
@@ -55,7 +55,7 @@
                                 <div class="d-flex flex-row-reverse">
                                     <div class="contacto">
                                         <span>{{ $sms->fecha }}</span><br>
-                                        <b>{{ $a->name }} {{ $a->surnames }}: {{ $sms->texto }}</b><br><br>
+                                        <b>{{ $a->name }} {{ $a->surname1 }}: {{ $sms->texto }}</b><br><br>
                                     </div>
                                 </div>
                                 @endif

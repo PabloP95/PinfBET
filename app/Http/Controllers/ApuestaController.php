@@ -19,7 +19,7 @@ class ApuestaController extends Controller
                     ->orwhere('friendlist.id1','=',$id)
                     ->orderBy('name','asc')
                     ->distinct()
-                    ->select('users.id','users.name','users.surnames')
+                    ->select('users.id','users.name','users.surname1', 'users.surname2')
                     ->get();
 
             $asignaturas = [];
@@ -36,7 +36,7 @@ class ApuestaController extends Controller
                 ->orwhere('friendlist.id1','=',$id1)
                 ->orderBy('name','asc')
                 ->distinct()
-                ->select('users.id','users.name','users.surnames')
+                ->select('users.id','users.name','users.surname1', 'users.surname2')
                 ->get();
 
         $asignaturas = DB::select("SELECT * FROM asignatura, usuario_asignatura WHERE id = $id2 AND asignatura.cod_asig = usuario_asignatura.cod_asig AND (nota < 5 OR nota IS NULL)");

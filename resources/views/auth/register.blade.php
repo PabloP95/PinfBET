@@ -29,18 +29,33 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+                        <label for="Primer apellido" class="col-md-4 col-form-label text-md-right">{{ __('Primer apellido') }}</label>
 
                         <div class="col-md-6">
-                            <input id="surnames" type="text" class="form-control @error('surnames') is-invalid @enderror" name="surnames" value="{{ old('surnames') }}" required autocomplete="surnames" autofocus>
+                            <input id="surname1" type="text" class="form-control @error('surname1') is-invalid @enderror" name="surname1" value="{{ old('surname1') }}" required autocomplete="surname1" autofocus>
 
-                            @error('surnames')
+                            @error('surname1')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="Segundo apellido" class="col-md-4 col-form-label text-md-right">{{ __('Segundo apellido') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="surname2" type="text" class="form-control @error('surname2') is-invalid @enderror" name="surname2" value="{{ old('surname2') }}" required autocomplete="surname2" autofocus>
+
+                            @error('surname2')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
 
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>

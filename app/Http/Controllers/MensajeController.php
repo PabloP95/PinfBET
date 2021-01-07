@@ -25,7 +25,7 @@ class MensajeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        
+
     }
 
     /**
@@ -57,7 +57,7 @@ class MensajeController extends Controller {
                 ->orwhere('friendlist.id1','=',$id)
                 ->orderBy('name','asc')
                 ->distinct()
-                ->select('users.id','users.name','users.surnames')
+                ->select('users.id','users.name','users.surname1', 'users.surname2')
                 ->get();
 //        $amigos = DB::select("SELECT * FROM users, friendlist WHERE (id1 = $id AND id2 = users.id) OR (id2 = $id AND id1=users.id)");
 

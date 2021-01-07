@@ -33,7 +33,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <h3>Apuesta de la asignatura {{$asignatura->nombre_asig}} cursada por {{$amigo->name}} {{$amigo->surnames}}</h3>
+                    <h3>Apuesta de la asignatura {{$asignatura->nombre_asig}} cursada por {{$amigo->name}} {{$amigo->surname1}} {{$amigo->surname2}}</h3>
                 </div>
                 <form method="POST" action="/completarApuesta/subir/{{Auth::user()->id}}/{{$amigo->id}}/{{$asignatura->cod_asig}}">
                     @csrf

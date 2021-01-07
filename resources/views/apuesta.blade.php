@@ -35,7 +35,7 @@
                         <li role="presentation" class="list-group-item" style="width: 100%; background-color: transparent; border: none">
                             <form method="POST" action="/apuesta/{{ Auth::user()->id }}/{{$am->id}}">
                                 @csrf
-                                <button type="submit" name="amigo" value="{{$am->id}}" class="btn btn-success" style="width: 100%" >{{$am->name}}  {{$am->surnames}}</button>
+                                <button type="submit" name="amigo" value="{{$am->id}}" class="btn btn-success" style="width: 100%" >{{$am->name}}  {{$am->surname1}} {{$am->surname2}}</button>
                             </form>
                         </li>
                         @endforeach

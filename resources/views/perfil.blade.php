@@ -24,7 +24,7 @@
                             <b>Nombre del usuario</b><br>
                             {{ Auth::user()->name }}<br><br>
                             <b>Apellidos del usuario</b><br>
-                            {{ Auth::user()->surnames }}<br><br>
+                            {{ Auth::user()->surname1 }} {{ Auth::user()->surname2 }}<br><br>
                             <b>Su e-Mail</b><br>
                             {{ Auth::user()->email }}<br><br>
                             <b>CreditCoins disponibles</b><br>
@@ -48,8 +48,8 @@
             <h3>Datos del expediente</h3>
             <br>
             <h5>Tabla de calificaciones</h5>
-            <p>Recuerda que la información que se visualiza a continuación es obtenido del expediente facilitado.</p>                                                                                      
-            <div class="table-responsive">          
+            <p>Recuerda que la información que se visualiza a continuación es obtenido del expediente facilitado.</p>
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
