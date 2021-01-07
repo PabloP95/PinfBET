@@ -18,10 +18,15 @@ class PanelController extends Controller {
 
         $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
                               FROM users u, friendlist f
-                              WHERE u.id != $id and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                              WHERE u.id != $id and f.pendiente = 0 and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
                               ORDER BY u.name ASC");
 
-        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos]);
+        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2
+                              FROM users u, friendlist f
+                              WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
+                              ORDER BY u.name ASC");
+
+        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes]);
     }
 
     public function buscar(Request $request, $id) {
@@ -30,6 +35,16 @@ class PanelController extends Controller {
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
+        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
+                              FROM users u, friendlist f
+                              WHERE u.id != $id and f.pendiente = 0 and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                              ORDER BY u.name ASC");
+
+        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2
+                                FROM users u, friendlist f
+                                WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
+                                ORDER BY u.name ASC");
+
 
         if(!empty($request->input('busqueda'))){
             $buscados = DB::select("SELECT name, surname1, surname2, id
@@ -37,16 +52,16 @@ class PanelController extends Controller {
                                     WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
                                     id NOT IN (SELECT id2
 									FROM users u, friendlist f
-									WHERE (u.id = $id and u.id = f.id1)) and
+									WHERE (u.id = $id and u.id = f.id1 and f.pendiente = 0)) and
                                     id NOT IN (SELECT id1
 									FROM users u, friendlist f
-									WHERE (u.id = $id and u.id = f.id2))
+									WHERE (u.id = $id and u.id = f.id2 and f.pendiente = 0))
                                     and id != $id");
 
         }else{
             $buscados = [];
         }
 
-        return view('panel', ['apuestas' => $apuestas, 'buscados' => $buscados]);
+        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscados' => $buscados]);
     }
 }

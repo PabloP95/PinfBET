@@ -82,13 +82,15 @@
                         </div>
                     </div>
                     <br>
-                    {{--@if (count($record)> 1)--}}
+                    @if(!empty($pendientes))
                     <div class="row">
                         <div class="col-sm-12">
                             <h5>Solicitudes pendientes</h5>
+
+                            @foreach ($pendientes as $p)
                             <div class="row">
                                 <div class="col-sm-8">
-                                    Grupo 6
+                                {{ $p->name}} {{ $p->surname1}} {{ $p->surname2}}
                                 </div>
                                 <div class="col-sm-2 text-right">
                                     <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
@@ -97,22 +99,10 @@
                                     <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="25px"/>
                                 </div>
                             </div>
-                            {{--@foreach ($conocidos as $conocido) --}}
-<!--                            <div class="row">
-                                <div class="col-sm-8">
-                                    {{-- $conocido->usuarioName --}}
-                                </div>
-                                <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="25px"/>
-                                </div>
-                            </div>-->
-                            {{--@endforeach --}}
+                            @endforeach
                         </div>
                     </div>
-                    {{--@endif--}}
+                    @endif
                     <br>
                     <div class="row">
                         <div class="col-sm-12">
@@ -123,8 +113,8 @@
                                 <input type="submit" class="btn btn-primary" name="buscar" value="Buscar">
                             </form>
                             <br>
+                            @if(isset($buscados) && !empty($buscados))
                             <h6>Usuarios disponibles</h6>
-                            @if(isset($buscados))
                             @foreach ($buscados as $buscado)
                             <div class="row">
                                 <div class="col-sm-10">
