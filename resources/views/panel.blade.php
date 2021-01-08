@@ -79,6 +79,13 @@
                             </div>
                             @endforeach
                             @endif
+                            @if(empty($amigos))
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span><strong> No tienes amigos</strong> </span>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <br>
@@ -93,10 +100,14 @@
                                 {{ $p->name}} {{ $p->surname1}} {{ $p->surname2}}
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
+                                    <a href="/panel/{{Auth::user()->id}}/{{$p->id}}/aceptar" title="Aceptar solicitud">
+                                        <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
+                                    </a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <img src="{{ asset('/images/no.png') }}" alt="enviar mensaje" height="25px"/>
+                                    <a href="/panel/{{Auth::user()->id}}/{{$p->id}}/rechazar" title="Rechazar solicitud">
+                                        <img src="{{ asset('/images/no.png') }}"  height="25px"/>
+                                    </a>
                                 </div>
                             </div>
                             @endforeach
@@ -120,48 +131,19 @@
                                 <div class="col-sm-10">
                                     {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
                                 </div>
+                                @if($buscado->pendiente == 1)
                                 <div class="col-sm-2 text-right">
-                                    <img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/>
+                                    <span><strong> Pendiente</strong> </span>
                                 </div>
+                                @else
+                                <div class="col-sm-2 text-right">
+                                    <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
+                                </div>
+                                @endif
                             </div>
                             @endforeach
                             @endif
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <h5>Posibles apuestas</h5>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Usuario</th>
-                                    <th>Asignatura</th>
-                                    <th>Nota media</th>
-                                    <th>Apuesta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Equipo 5</td>
-                                    <td>PINF</td>
-                                    <td>10</td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-warning">Apostar</button>
-                                    </td>
-                                </tr>
-                                {{--@foreach ($posiblesApuestas as $posibleApuesta) --}}
-<!--                                <tr>
-                                    <td>{{-- $posibleApuesta->usuarioName --}}</td>
-                                    <td>{{-- $posibleApuesta->asignatura --}}</td>
-                                    <td>{{-- $posibleApuesta->media --}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-warning">Apostar</button>
-                                    </td>
-                                </tr>-->
-                                {{--@endforeach --}}
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

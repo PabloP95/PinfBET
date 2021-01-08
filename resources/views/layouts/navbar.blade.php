@@ -8,10 +8,6 @@
       <a class="nav-link" href="/panel/{{Auth::user()->id}}">Mi panel</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/perfil">Mi perfil</a>
-    </li>
-
-    <li class="nav-item">
       <a class="nav-link" href="/apuesta/{{Auth::user()->id}}">Apostar</a>
     </li>
     @endif
@@ -39,6 +35,9 @@
             <div class="dropdown-menu dropdown-menu-right" style="color:gold" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/perfil">
                     {{ __('Mi perfil') }}
+                </a>
+                <a class="dropdown-item" href="/apuesta/{{Auth::user()->id}}">
+                    {{ __('Mi panel') }}
                 </a>
 
                 <a class="dropdown-item" href="/mensajes/{{Auth::user()->id}}">

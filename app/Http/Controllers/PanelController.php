@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
 use App\Models\User;
+use App\Models\Friendlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -18,10 +19,10 @@ class PanelController extends Controller {
 
         $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
                               FROM users u, friendlist f
-                              WHERE u.id != $id and f.pendiente = 0 and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                              WHERE u.id != $id and f.pendiente = 0 and ((f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1))
                               ORDER BY u.name ASC");
 
-        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2
+        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2, u.id
                               FROM users u, friendlist f
                               WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
                               ORDER BY u.name ASC");
@@ -37,18 +38,18 @@ class PanelController extends Controller {
 
         $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
                               FROM users u, friendlist f
-                              WHERE u.id != $id and f.pendiente = 0 and (f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1)
+                              WHERE u.id != $id and f.pendiente = 0 and ((f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1))
                               ORDER BY u.name ASC");
 
-        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2
+        $pendientes = DB::select("SELECT u.name, u.surname1, u.surname2, u.id
                                 FROM users u, friendlist f
                                 WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
                                 ORDER BY u.name ASC");
 
 
         if(!empty($request->input('busqueda'))){
-            $buscados = DB::select("SELECT name, surname1, surname2, id
-                                    FROM users
+            $buscados = DB::select("SELECT name, surname1, surname2, id, pendiente
+                                    FROM users, friendlist
                                     WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
                                     id NOT IN (SELECT id2
 									FROM users u, friendlist f
@@ -64,4 +65,34 @@ class PanelController extends Controller {
 
         return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscados' => $buscados]);
     }
+
+    public function agregar($id1, $id2){
+        DB::table('friendlist')->insert([
+            'id1' => $id1,
+            'id2' => $id2,
+            'pendiente' => '1']);
+
+        return redirect('/panel/'.$id1);
+
+
+      }
+
+      public function responderSolicitud($id1, $id2, $accion){
+
+          if($accion == "aceptar"){
+              DB::table('friendlist')
+                          ->where('id1', $id2)
+                          ->where('id2', $id1)
+                          ->update(['pendiente' => "0"]);
+          }else{
+              DB::table('friendlist')
+                          ->where('id1', $id2)
+                          ->where('id2', $id1)
+                          ->delete();
+          }
+
+          return redirect('/panel/'.$id1);
+
+
+        }
 }
