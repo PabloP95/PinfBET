@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Rules\palabraespanol;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -51,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'alpha'],
-            'surname1' => ['required', 'string', 'max:255', 'alpha'],
-            'surname2' => ['required', 'string', 'max:255', 'alpha'],
+            'name' => ['required', 'string', 'max:255', new palabraespanol],
+            'surname1' => ['required', 'string', 'max:255', new palabraespanol],
+            'surname2' => ['required', 'string', 'max:255', new palabraespanol],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

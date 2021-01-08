@@ -16,6 +16,7 @@ class CreateFriendlistTable extends Migration
         Schema::create('friendlist', function (Blueprint $table) {
             $table->bigInteger('id1');
             $table->bigInteger('id2');
+            $table->boolean('pendiente')->default('1');
 
             $table->primary(['id1', 'id2']);
         });
