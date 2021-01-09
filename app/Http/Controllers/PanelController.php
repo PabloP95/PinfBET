@@ -50,6 +50,18 @@ class PanelController extends Controller {
         $buscadosNoamig = [];
 
         if(!empty($request->input('busqueda'))){
+                /*
+                $buscados = DB::select("SELECT distinct name, surname1, surname2, id, pendiente
+                                        FROM users, friendlist
+                                        WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
+                                        id NOT IN (SELECT id2
+    									FROM users u, friendlist f
+    									WHERE (u.id = $id and u.id = f.id1 and f.pendiente = 0)) and
+                                        id NOT IN (SELECT id1
+    									FROM users u, friendlist f
+    									WHERE (u.id = $id and u.id = f.id2 and f.pendiente = 0))
+                                        and id != $id");
+                                        */
             $buscadosNoamig = DB::select("SELECT name, surname1, surname2, id
                                           FROM users
                                           WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and id != $id

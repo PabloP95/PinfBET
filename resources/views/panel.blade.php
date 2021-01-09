@@ -165,57 +165,6 @@
                                     @endif
                                 @endif
                             @endif
-                            <!--
-                            @if(isset($buscados) && !empty($buscados))
-                                @foreach($buscados as $buscado)
-                                    @if(isset($buscado->pendiente) &&
-                                       ((Auth::user()->id == $buscado->id1 && $buscado->id == $buscado->id2) ||
-                                        (Auth::user()->id == $buscado->id2 && $buscado->id == $buscado->id1)))
-                                            <h6>Usuarios disponibles</h6>
-                                            @if($buscado->pendiente == 0)
-                                                <div class="row">
-                                                    <div class="col-sm-10">
-                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
-                                                    </div>
-                                                    <div class="col-sm-2 text-right">
-                                                        <span><strong> Amigo</strong> </span>
-                                                    </div>
-                                                <div>
-                                            @elseif($buscado->pendiente == 1)
-                                                <div class="row">
-                                                    <div class="col-sm-10">
-                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
-                                                    </div>
-                                                    <div class="col-sm-2 text-right">
-                                                        <span><strong> Pendiente</strong> </span>
-                                                    </div>
-                                                <div>
-                                            @else
-                                            <h6>Usuarios disponibles</h6>
-                                            <div class="row">
-                                                <div class="col-sm-10">
-                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}} fadskjfksdeja
-                                                </div>
-                                                    <div class="col-sm-2 text-right">
-                                                        <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endif
-                                    @else
-                                    <h6>Usuarios disponibles</h6>
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                                {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}} fadskjfksdeja
-                                        </div>
-                                            <div class="col-sm-2 text-right">
-                                                <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                @endforeach
-                            @endif-->
                         </div>
                     </div>
                 </div>
