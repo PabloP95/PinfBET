@@ -46,24 +46,39 @@ class PanelController extends Controller {
                                 WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
                                 ORDER BY u.name ASC");
 
+        $buscadosAmigos = [];
+        $buscadosNoamig = [];
 
         if(!empty($request->input('busqueda'))){
-            $buscados = DB::select("SELECT name, surname1, surname2, id, pendiente
-                                    FROM users, friendlist
-                                    WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
-                                    id NOT IN (SELECT id2
-									FROM users u, friendlist f
-									WHERE (u.id = $id and u.id = f.id1 and f.pendiente = 0)) and
-                                    id NOT IN (SELECT id1
-									FROM users u, friendlist f
-									WHERE (u.id = $id and u.id = f.id2 and f.pendiente = 0))
-                                    and id != $id");
+                /*
+                $buscados = DB::select("SELECT distinct name, surname1, surname2, id, pendiente
+                                        FROM users, friendlist
+                                        WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
+                                        id NOT IN (SELECT id2
+    									FROM users u, friendlist f
+    									WHERE (u.id = $id and u.id = f.id1 and f.pendiente = 0)) and
+                                        id NOT IN (SELECT id1
+    									FROM users u, friendlist f
+    									WHERE (u.id = $id and u.id = f.id2 and f.pendiente = 0))
+                                        and id != $id");
+                                        */
+            $buscadosNoamig = DB::select("SELECT name, surname1, surname2, id
+                                          FROM users
+                                          WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and id != $id
+                                          and id not in (SELECT id1
+                                                         FROM friendlist
+                                                         WHERE id2 = $id)
+                                          and id not in (SELECT id2
+                                                         FROM friendlist
+                                                         WHERE id1 = $id)" );
 
-        }else{
-            $buscados = [];
+            $buscadosAmigos = DB::select("SELECT name, surname1, surname2, id, pendiente, id1, id2
+                                          FROM users, friendlist
+                                          WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and id != $id and ((id1 = id and id2 = $id) or (id1 = $id and id2 = id))");
         }
 
-        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscados' => $buscados]);
+
+        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscadosNoamig' => $buscadosNoamig, 'buscadosAmigos' => $buscadosAmigos]);
     }
 
     public function agregar($id1, $id2){

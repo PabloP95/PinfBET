@@ -124,25 +124,98 @@
                                 <input type="submit" class="btn btn-primary" name="buscar" value="Buscar">
                             </form>
                             <br>
-                            @if(isset($buscados) && !empty($buscados))
-                            <h6>Usuarios disponibles</h6>
-                            @foreach ($buscados as $buscado)
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
-                                </div>
-                                @if($buscado->pendiente == 1)
-                                <div class="col-sm-2 text-right">
-                                    <span><strong> Pendiente</strong> </span>
-                                </div>
-                                @else
-                                <div class="col-sm-2 text-right">
-                                    <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
-                                </div>
+                            @if(isset($buscadosAmigos) && isset($buscadosNoamig))
+                                @if(!empty($buscadosNoamig) || !empty($buscadosAmigos))
+                                    <h6>Usuarios disponibles</h6>
+                                    @if(!empty($buscadosNoamig))
+                                        @foreach($buscadosNoamig as $bna)
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                        {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <a href="/panel/{{Auth::User()->id}}/{{$bna->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                    @if(!empty($buscadosAmigos))
+                                        @foreach($buscadosAmigos as $bna)
+                                            @if($bna->pendiente == 0)
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                    </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <span><strong>Amigo</strong> </span>
+                                                    </div>
+                                                <div>
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        {{ $bna->name}} {{ $bna->surname1}} {{ $bna->surname2}}
+                                                    </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <span><strong>Pendiente</strong> </span>
+                                                    </div>
+                                                <div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @endif
-                            </div>
-                            @endforeach
                             @endif
+                            <!--
+                            @if(isset($buscados) && !empty($buscados))
+                                @foreach($buscados as $buscado)
+                                    @if(isset($buscado->pendiente) &&
+                                       ((Auth::user()->id == $buscado->id1 && $buscado->id == $buscado->id2) ||
+                                        (Auth::user()->id == $buscado->id2 && $buscado->id == $buscado->id1)))
+                                            <h6>Usuarios disponibles</h6>
+                                            @if($buscado->pendiente == 0)
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
+                                                    </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <span><strong> Amigo</strong> </span>
+                                                    </div>
+                                                <div>
+                                            @elseif($buscado->pendiente == 1)
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}}
+                                                    </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <span><strong> Pendiente</strong> </span>
+                                                    </div>
+                                                <div>
+                                            @else
+                                            <h6>Usuarios disponibles</h6>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                        {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}} fadskjfksdeja
+                                                </div>
+                                                    <div class="col-sm-2 text-right">
+                                                        <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                    @else
+                                    <h6>Usuarios disponibles</h6>
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                                {{ $buscado->name}} {{ $buscado->surname1}} {{ $buscado->surname2}} fadskjfksdeja
+                                        </div>
+                                            <div class="col-sm-2 text-right">
+                                                <a href="/panel/{{Auth::User()->id}}/{{$buscado->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            @endif-->
                         </div>
                     </div>
                 </div>
