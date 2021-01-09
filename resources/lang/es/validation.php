@@ -130,11 +130,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+       'g-recaptcha-response' => [
+            'required' => 'Por favor marca la casilla "No soy un robot".',
+            'captcha' => 'Error de verificación de la captcha para robots. Inténtalo más tarde o contacta con nosotros.',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
