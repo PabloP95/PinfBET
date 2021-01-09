@@ -33,7 +33,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" style="color:gold" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/perfil">
+                <a class="dropdown-item" href="/perfil/{{Auth::user()->id}}">
                     {{ __('Mi perfil') }}
                 </a>
                 <a class="dropdown-item" href="/apuesta/{{Auth::user()->id}}">

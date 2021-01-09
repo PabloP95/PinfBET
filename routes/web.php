@@ -25,14 +25,16 @@ Route::get('/quienes-somos/', function(){
     return view('quienes');
 });
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->middleware('auth');
+
+Route::get('/perfil/{id}', [App\Http\Controllers\PerfilController::class, 'show'])->middleware('auth');
+Route::get('/perfil/{id1}/{id2}', [App\Http\Controllers\PerfilController::class, 'showAmigo'])->middleware('auth');
 
 Route::get('/panel/{id}', [App\Http\Controllers\PanelController::class, 'show'])->middleware('auth');
 Route::post('/panel/{id}', [App\Http\Controllers\PanelController::class, 'buscar'])->middleware('auth');
 Route::get('/panel/{id1}/{id2}', [App\Http\Controllers\PanelController::class, 'agregar'])->middleware('auth');
 Route::get('/panel/{id1}/{id2}/{accion}', [App\Http\Controllers\PanelController::class, 'responderSolicitud'])->middleware('auth');
+
+
 
 Route::get('/mensajes/{id}', [App\Http\Controllers\MensajeController::class, 'show'])->middleware('auth');
 Route::post('/mensajes/{id}/{ida}', 'MensajeController@subirMensaje')->middleware('auth');

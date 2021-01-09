@@ -17,7 +17,7 @@ class PanelController extends Controller {
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
-        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
+        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins, u.id
                               FROM users u, friendlist f
                               WHERE u.id != $id and f.pendiente = 0 and ((f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1))
                               ORDER BY u.name ASC");
@@ -36,7 +36,7 @@ class PanelController extends Controller {
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
-        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins
+        $amigos = DB::select("SELECT u.name, u.surname1, u.surname2, u.creditCoins, u.id
                               FROM users u, friendlist f
                               WHERE u.id != $id and f.pendiente = 0 and ((f.id1 = $id and u.id = f.id2) or (f.id2 = $id and u.id = f.id1))
                               ORDER BY u.name ASC");

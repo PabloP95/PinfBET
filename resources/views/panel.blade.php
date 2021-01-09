@@ -68,7 +68,9 @@
                             @foreach ($amigos as $amigo)
                             <div class="row">
                                 <div class="col-sm-6">
-                                    {{$amigo->name}} {{$amigo->surname1}} {{$amigo->surname2}}
+                                    <a  href="/perfil/{{Auth::User()->id}}/{{$amigo->id}}" style="text-decoration: none;" title="Ver Perfil" >
+                                        {{$amigo->name}} {{$amigo->surname1}} {{$amigo->surname2}}
+                                    </a>
                                 </div>
                                 <div class="col-sm-4 text-right">
                                     {{$amigo->creditCoins}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
@@ -97,7 +99,9 @@
                             @foreach ($pendientes as $p)
                             <div class="row">
                                 <div class="col-sm-8">
-                                {{ $p->name}} {{ $p->surname1}} {{ $p->surname2}}
+                                    <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$p->id}}" title="Ver Perfil" >
+                                        {{$p->name}} {{$p->surname1}} {{$p->surname2}}
+                                    </a>
                                 </div>
                                 <div class="col-sm-2 text-right">
                                     <a href="/panel/{{Auth::user()->id}}/{{$p->id}}/aceptar" title="Aceptar solicitud">
@@ -131,7 +135,9 @@
                                         @foreach($buscadosNoamig as $bna)
                                             <div class="row">
                                                 <div class="col-sm-10">
-                                                        {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                            {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                        </a>
                                                 </div>
                                                     <div class="col-sm-2 text-right">
                                                         <a href="/panel/{{Auth::User()->id}}/{{$bna->id}}" title="Enviar solicitud" ><img src="{{ asset('/images/yes.png') }}" style="padding-left: 10px; height: 25px"/></a>
@@ -145,7 +151,9 @@
                                             @if($bna->pendiente == 0)
                                                 <div class="row">
                                                     <div class="col-sm-10">
-                                                        {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                            {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                        </a>
                                                     </div>
                                                     <div class="col-sm-2 text-right">
                                                         <span><strong>Amigo</strong> </span>
@@ -154,7 +162,9 @@
                                             @else
                                                 <div class="row">
                                                     <div class="col-sm-10">
-                                                        {{ $bna->name}} {{ $bna->surname1}} {{ $bna->surname2}}
+                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                            {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
+                                                        </a>
                                                     </div>
                                                     <div class="col-sm-2 text-right">
                                                         <span><strong>Pendiente</strong> </span>

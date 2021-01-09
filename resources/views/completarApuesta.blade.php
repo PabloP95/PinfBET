@@ -39,7 +39,7 @@
                     @csrf
                     <input type="hidden" name="mismonedas" value={{Auth::user()->creditCoins}}>
                     <label for="fname">Nota de apuesta: </label>
-                    <input type="number" name="notaApuesta" autocomplete="off" required><br>
+                    <input type="number" name="notaApuesta" autocomplete="off" step = ".01" required><br>
                     <label for="lname">CreditCoins apostadas: </label>
                     <input type="number" name="creditCoins" autocomplete="off" required><br><br>
                     <input type="submit" name="enviarApuesta" value="APOSTAR">

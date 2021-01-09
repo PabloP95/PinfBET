@@ -1,7 +1,7 @@
 <!-- SECTION: Menu principal -->
 @extends('layouts.master')
 @section('titulo')
-<title>Mi Perfil</title>
+<title>Perfil de {{$amigo->name}}</title>
 @endsection
 <!-- LAYOUT: CENTER -->
 <!-- BLOCK: CENTER -->
@@ -14,21 +14,21 @@
         <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h2>Perfil de {{ Auth::user()->name }}</h2>
+                    <h2>Perfil de su amigo {{$amigo->name }} {{$amigo->surname1 }}</h2>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="panel panel-primary">
-                            <b>Nombre del usuario</b><br>
-                            {{ Auth::user()->name }}<br><br>
-                            <b>Apellidos del usuario</b><br>
-                            {{ Auth::user()->surname1 }} {{ Auth::user()->surname2 }}<br><br>
+                            <b>Nombre del amigo</b><br>
+                            {{ $amigo->name }}<br><br>
+                            <b>Apellidos del amigo</b><br>
+                            {{$amigo->surname1 }} {{$amigo->surname2 }}<br><br>
                             <b>Su e-Mail</b><br>
-                            {{ Auth::user()->email }}<br><br>
+                            {{$amigo->email }}<br><br>
                             <b>CreditCoins disponibles</b><br>
-                            {{ Auth::user()->creditCoins}}<br><br>
+                            {{$amigo->creditCoins}}<br><br>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -39,7 +39,6 @@
                             {{$perdidas->total}}<br><br>
                             <b>Apuestas realizadas</b><br>
                             {{$realizadas->total}}<br><br>
-                            <a href="#" class="btn btn-primary" role="button">Realizar apuesta</a>
                         </div>
                     </div>
                 </div>
@@ -80,11 +79,6 @@
                     </tbody>
                 </table>
             </div>
-            <hr>
-            <br><br>
-            {{--@if ($propietario)--}}
-                @include('perfil_cambio_datos')
-            {{--@endif--}}
         </div>
         <div class="col-sm-2 sidenav">
             @include('anuncios.anuncio2')
