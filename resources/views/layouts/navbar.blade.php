@@ -36,7 +36,7 @@
                 <a class="dropdown-item" href="/perfil/{{Auth::user()->id}}">
                     {{ __('Mi perfil') }}
                 </a>
-                <a class="dropdown-item" href="/apuesta/{{Auth::user()->id}}">
+                <a class="dropdown-item" href="/panel/{{Auth::user()->id}}">
                     {{ __('Mi panel') }}
                 </a>
 

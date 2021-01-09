@@ -39,7 +39,7 @@
                             {{$perdidas->total}}<br><br>
                             <b>Apuestas realizadas</b><br>
                             {{$realizadas->total}}<br><br>
-                            <a href="#" class="btn btn-primary" role="button">Realizar apuesta</a>
+                            <a href="/apuesta/{{Auth::user()->id}}" class="btn btn-primary" role="button">Realizar apuesta</a>
                         </div>
                     </div>
                 </div>
