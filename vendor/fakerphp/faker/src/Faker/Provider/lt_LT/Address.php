@@ -11,7 +11,7 @@ class Address extends \Faker\Provider\Address
         'g.', 'gatvė', 'prospektas', 'alėja',
     ];
 
-    protected static $buildingNumber = ['##'];
+    protected static $buildingNumber = ['%#'];
 
     protected static $postcode = ['LT-#####'];
 
@@ -72,9 +72,9 @@ class Address extends \Faker\Provider\Address
     ];
 
     protected static $addressFormats = [
-        "{{street}} {{streetSuffix}} {{buildingNumber}}-{{buildingNumber}}, {{city}}",
-        "{{street}} {{streetSuffix}} {{buildingNumber}}, {{city}}",
-        "{{street}} {{streetSuffix}} {{buildingNumber}}, {{city}} {{postcode}}",
+        '{{street}} {{streetSuffix}} {{buildingNumber}}-{{buildingNumber}}, {{city}}',
+        '{{street}} {{streetSuffix}} {{buildingNumber}}, {{city}}',
+        '{{street}} {{streetSuffix}} {{buildingNumber}}, {{city}} {{postcode}}',
     ];
 
     /**

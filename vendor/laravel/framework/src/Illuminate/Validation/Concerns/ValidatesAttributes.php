@@ -1142,6 +1142,10 @@ trait ValidatesAttributes
      */
     public function validateJson($attribute, $value)
     {
+        if (is_array($value)) {
+            return false;
+        }
+
         if (! is_scalar($value) && ! method_exists($value, '__toString')) {
             return false;
         }
@@ -1186,6 +1190,10 @@ trait ValidatesAttributes
 
         if ($this->shouldBlockPhpUpload($value, $parameters)) {
             return false;
+        }
+
+        if (in_array('jpg', $parameters) || in_array('jpeg', $parameters)) {
+            $parameters = array_unique(array_merge($parameters, ['jpg', 'jpeg']));
         }
 
         return $value->getPath() !== '' && in_array($value->guessExtension(), $parameters);
