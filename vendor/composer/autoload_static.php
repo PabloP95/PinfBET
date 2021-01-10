@@ -522,6 +522,13 @@ class ComposerStaticInitca24b7396d257f69749927e39440893b
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
+        'K' => 
+        array (
+            'KubAT\\PhpSimple\\HtmlDomParser' => 
+            array (
+                0 => __DIR__ . '/..' . '/kub-at/php-simple-html-dom-parser/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -541,6 +548,7 @@ class ComposerStaticInitca24b7396d257f69749927e39440893b
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MensajeController' => __DIR__ . '/../..' . '/app/Http/Controllers/MensajeController.php',
         'App\\Http\\Controllers\\PanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/PanelController.php',
+        'App\\Http\\Controllers\\PerfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilController.php',
         'App\\Http\\Controllers\\completarApuestaController' => __DIR__ . '/../..' . '/app/Http/Controllers/completarApuestaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -2546,6 +2554,7 @@ class ComposerStaticInitca24b7396d257f69749927e39440893b
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'KubAT\\PhpSimple\\HtmlDomParser' => __DIR__ . '/..' . '/kub-at/php-simple-html-dom-parser/src/KubAT/PhpSimple/HtmlDomParser.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',

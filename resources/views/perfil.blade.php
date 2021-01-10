@@ -15,6 +15,11 @@
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h2>Perfil de {{ Auth::user()->name }}</h2>
+                    @if (session('status'))
+                    <div class="alert alert-danger">
+                        {{ session('status') }}
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="container">
@@ -68,15 +73,13 @@
                             <td>8</td>
                             <td>24</td>
                         </tr>
-                        {{--@foreach ($asignaturas as $asignatura) --}}
-<!--                        <tr>
-                            <td>{{-- $asignatura->name --}}</td>
-                            <td>{{-- $asignatura->sigla --}}</td>
-                            <td>{{-- $asignatura->nota --}}</td>
-                            <td>{{-- $asignatura->acertadas --}}</td>
-                            <td>{{-- $asignatura->realizadas --}}</td>
+                        @if(isset($expediente))
+                        @foreach ($expediente as $e)
+                        <tr>
+                            <td>{{$e}}</td>
                         </tr>-->
-                        {{--@endforeach --}}
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

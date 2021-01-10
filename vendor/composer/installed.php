@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0bc299b59b1ff86bfa614f017c6030d7a7d9d19f',
+    'reference' => '70b46bb5a2d00c54d7709656f618f636f622c267',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -438,6 +438,15 @@
         0 => '*',
       ),
     ),
+    'kub-at/php-simple-html-dom-parser' => 
+    array (
+      'pretty_version' => '1.9.1',
+      'version' => '1.9.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ff22f98bfd9235115c128059076f3eb740d66913',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.21.0',
@@ -454,7 +463,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0bc299b59b1ff86bfa614f017c6030d7a7d9d19f',
+      'reference' => '70b46bb5a2d00c54d7709656f618f636f622c267',
     ),
     'laravel/tinker' => 
     array (

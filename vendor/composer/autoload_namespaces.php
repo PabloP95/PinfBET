@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Smalot\\PdfParser\\' => array($vendorDir . '/smalot/pdfparser/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'KubAT\\PhpSimple\\HtmlDomParser' => array($vendorDir . '/kub-at/php-simple-html-dom-parser/src'),
 );

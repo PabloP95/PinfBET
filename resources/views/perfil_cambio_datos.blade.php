@@ -50,12 +50,13 @@
 <br>
 <h5>Subida del expediente</h5>
 <p>Recuerda que debes subir el expediente a medida que las actas se cierren.</p>
-<form method="POST" action="#">
+<form method="POST" action="/perfil/subirExpediente/{{Auth::user()->id}}" enctype="multipart/form-data">
+    @csrf
     <div class="form-group row">
         <label for="file" class="col-md-4 col-form-label text-md-right">{{ __('Expediente con notas') }}</label>
 
         <div class="col-md-6">
-            <input id="file" type="file" class="form-control" name="file" required autocomplete="file">
+            <input id="file" type="file" class="form-control" name="file"  required autocomplete="file">
         </div>
     </div>
 
