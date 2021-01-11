@@ -74,11 +74,13 @@
                             <td>24</td>
                         </tr>
                         @if(isset($expediente))
-                        @foreach ($expediente as $e)
+                        @foreach ($expediente as $i=>$e)
                         <tr>
 
                             <td>{{$e}}</td>
-
+                            <td>{{$i}}</td>
+                            <td>{{$linea2}}</td>
+                            <td>{{$linea3}}</td>
                         </tr>
                             @endforeach
                         @endif
