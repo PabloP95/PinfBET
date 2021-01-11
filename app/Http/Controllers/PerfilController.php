@@ -51,8 +51,8 @@ class PerfilController extends Controller {
 
     function tildes_a_mayus($cadena){
         $cadena = str_replace(
-            array('á', 'é', 'í', 'ó', 'ú', 'ü'),
-            array('Á', 'É', 'Í', 'Ó', 'Ú', 'Ü'),
+            array('á', 'é', 'í', 'ó', 'ú', 'ü', ','),
+            array('Á', 'É', 'Í', 'Ó', 'Ú', 'Ü', '.'),
             $cadena
         );
         return $cadena;
@@ -101,6 +101,73 @@ class PerfilController extends Controller {
         }
     }
 
+    //Añade las asignaturas sobre las que van a poder apostar los demás alumnos
+    function anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id){
+        $codigos = [];
+        $nota = [];
+        $curso = [];
+        $convocatoria = [];
+
+        for($i = $lineaEmpezar; $i < $lineaTerminar; $i++){
+            if(stripos($pdfTroceado[$i], "21714") !== false)
+            {
+                $lineaConAsig = $pdfTroceado[$i];
+                $lineaCalificacion = explode(" ", $lineaConAsig);
+                if($lineaCalificacion[count($lineaCalificacion)-9] == "PRESENTADO"){
+                    array_push($nota, null);
+                }else{
+                    array_push($nota, (float)$this->tildes_a_mayus($lineaCalificacion[count($lineaCalificacion)-2]));
+                }
+                array_push($codigos, $lineaCalificacion[1]);
+
+                for($j = 0; $j < count($lineaCalificacion); $j++){
+                    if($lineaCalificacion[$j] == "F" || $lineaCalificacion[$j] == "J" || $lineaCalificacion[$j] == "S"){
+                       if($j != 0 && $lineaCalificacion[$j-1] == "" && $lineaCalificacion[$j+1] == ""){
+
+                           if($lineaCalificacion[$j] == "F")
+                                array_push($convocatoria, 1);
+                           if($lineaCalificacion[$j] == "J")
+                                array_push($convocatoria, 2);
+                           if($lineaCalificacion[$j] == "S")
+                                array_push($convocatoria, 3);
+                       }
+                   }
+                }
+
+                for($j = 0; $j < count($lineaCalificacion); $j++){
+                    if(preg_match('/[0-9][0-9]-[0-9][0-9]/', $lineaCalificacion[$j])){
+                        $c = explode("-", $lineaCalificacion[$j]);
+                        array_push($curso, (int)($c[0]."".$c[1]));
+                    }
+                }
+
+            }
+        }
+
+        for($i = 0; $i < count($codigos); $i++){
+            $r = DB::table('usuario_asignatura')->where([['id', $id],
+                                                         ['cod_asig', $codigos[$i]],
+                                                         ['curso', $curso[$i]],
+                                                         ['convocatoria', $convocatoria[$i]]])->first();
+            if(empty($r)){
+                if($nota[$i] != null){
+                    DB::table('usuario_asignatura')->insert([
+                        'id' => $id,
+                        'cod_asig' => $codigos[$i],
+                        'nota' => $nota[$i],
+                        'curso' => $curso[$i],
+                        'convocatoria' => $convocatoria[$i]]);
+                }else{
+                    DB::table('usuario_asignatura')->insert([
+                        'id' => $id,
+                        'cod_asig' => $codigos[$i],
+                        'curso' => $curso[$i],
+                        'convocatoria' => $convocatoria[$i]]);
+                }
+            }
+        }
+     }
+
 
     public function subirExpediente(Request $request, $id){
 
@@ -134,7 +201,6 @@ class PerfilController extends Controller {
             *
             */
             $lineaEmpezar = 0;
-            $lineaEmpezarEste = 0;
             $lineaTerminar = 0;
             $cont = 0;
             foreach ($pdfTroceado as $linea) {
@@ -142,23 +208,25 @@ class PerfilController extends Controller {
                 {
                     $lineaEmpezar = $cont;
                 }
-                if(stripos($linea, "Asignaturas Matriculadas") !== false)
-                {
-                    $lineaEmpezarEste = $cont;
-                }
-                if(stripos($linea, "Reconocimiento de asignaturas") !== false || stripos($linea, "NOTA MEDIA") !== false)
+                if( stripos($linea, "NOTA MEDIA") !== false || stripos($linea, "Reconocimiento de asignaturas") !== false)
                 {
                     $lineaTerminar = $cont;
                     break;
                 }
                 $cont++;
             }
+
+            //Alumno de nuevo ingreso sin haber hecho ninguna convocatoria
             if($lineaEmpezar == 0){
+
                 return redirect('/perfil/'.$id)->with('status', 'Este expediente esta vacío, para que puedan realizar apuestas sobre usted deberá presentarse a alguna convocatoria');
             }
 
             //Aumentamos la tabla asignaturas
             $this->aumentarAsignaturas($lineaEmpezar, $lineaTerminar, $pdfTroceado);
+
+            //Incluimos en la tabla usuario_asignatura las asignaturas
+            $this->anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id);
 
 
             $realizadas = DB::select("SELECT COUNT(*) as total
@@ -177,7 +245,7 @@ class PerfilController extends Controller {
                 return redirect('/perfil/'.$id)->with('status', 'Este expediente no concuerda con los datos de tu perfil. Revísalo');
             }
             else{
-                return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0], "linea2" => $lineaTerminar, "linea3" => $lineaEmpezarEste]);
+                return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0]]);
             }
         }
 

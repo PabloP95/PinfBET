@@ -18,8 +18,9 @@ class CreateUsuarioAsignaturaTable extends Migration
             $table->string('cod_asig');
             $table->float('nota', 2, 1)->nullable();
             $table->integer('curso');
+            $table->bigInteger('convocatoria');
 
-            $table->primary(['id', 'cod_asig', 'curso']);
+            $table->primary(['id', 'cod_asig', 'curso', 'convocatoria']);
         });
     }
 
