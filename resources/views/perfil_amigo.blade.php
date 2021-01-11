@@ -43,40 +43,6 @@
                     </div>
                 </div>
             </div><br><br>
-            <hr>
-            <h3>Datos del expediente</h3>
-            <br>
-            <h5>Tabla de calificaciones</h5>
-            <p>Recuerda que la información que se visualiza a continuación es obtenido del expediente facilitado.</p>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Siglas</th>
-                            <th>Nota</th>
-                            <th>Apuestas acertadas</th>
-                            <th>Apuestas realizadas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Proyectos Informáticos</td>
-                            <td>PINF</td>
-                            <td>10</td>
-                            <td>8</td>
-                            <td>24</td>
-                        </tr>
-                        {{--@foreach ($asignaturas as $asignatura) --}}
-<!--                        <tr>
-                            <td>{{-- $asignatura->name --}}</td>
-                            <td>{{-- $asignatura->sigla --}}</td>
-                            <td>{{-- $asignatura->nota --}}</td>
-                            <td>{{-- $asignatura->acertadas --}}</td>
-                            <td>{{-- $asignatura->realizadas --}}</td>
-                        </tr>-->
-                        {{--@endforeach --}}
-                    </tbody>
                 </table>
             </div>
         </div>
