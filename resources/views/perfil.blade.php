@@ -76,9 +76,11 @@
                         @if(isset($expediente))
                         @foreach ($expediente as $e)
                         <tr>
+
                             <td>{{$e}}</td>
-                        </tr>-->
-                        @endforeach
+
+                        </tr>
+                            @endforeach
                         @endif
                     </tbody>
                 </table>
