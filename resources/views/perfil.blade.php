@@ -13,13 +13,21 @@
         </div>
         <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2>Perfil de {{ Auth::user()->name }}</h2>
-                    @if (session('status'))
-                    <div class="alert alert-danger">
-                        {{ session('status') }}
+                <div class="container row">
+                    <div class="col-sm-11">
+                        <h2>Perfil de {{ Auth::user()->name }}</h2>
+                        @if (session('status'))
+                        <div class="alert alert-danger">
+                            {{ session('status') }}
+                        </div>
+                        @endif
                     </div>
-                    @endif
+                    <div class=" col-sm-1 align-content-sm-end">
+                        <div class="row">
+                            <h3>{{ Auth::user()->creditCoins}}</h3>
+                            <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 40px"/>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container">
@@ -66,13 +74,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Proyectos Informáticos</td>
-                            <td>PINF</td>
-                            <td>10</td>
-                            <td>8</td>
-                            <td>24</td>
-                        </tr>
                         @if(isset($expediente))
                         @foreach ($expediente as $i=>$e)
                         <tr>

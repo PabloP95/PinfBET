@@ -29,6 +29,7 @@ Route::get('/quienes-somos/', function(){
 Route::get('/perfil/{id}', [App\Http\Controllers\PerfilController::class, 'show'])->middleware('auth');
 Route::get('/perfil/{id1}/{id2}', [App\Http\Controllers\PerfilController::class, 'showAmigo'])->middleware('auth');
 Route::post('/perfil/subirExpediente/{id}', [App\Http\Controllers\PerfilController::class, 'subirExpediente'])->middleware('auth');
+Route::post('/perfil/subirMatricula/{id}', [App\Http\Controllers\PerfilController::class, 'subirMatricula'])->middleware('auth');
 
 Route::get('/panel/{id}', [App\Http\Controllers\PanelController::class, 'show'])->middleware('auth');
 Route::post('/panel/{id}', [App\Http\Controllers\PanelController::class, 'buscar'])->middleware('auth');

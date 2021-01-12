@@ -27,7 +27,30 @@ class PerfilController extends Controller {
                                FROM apuesta a, usu_apu_usu u
                                WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 1");
 
-        return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0]]);
+        //Control para la subida de las matrículas
+        $matriculaEnviada = DB::table('usuario_asignatura')->where('id', $id)->where('nota', '=', -1)->first();
+        $fhoy = Carbon::now();
+        $fini = Carbon::create($fhoy->year, 1, 1,0,0,0);
+        $ffin = Carbon::create($fhoy->year, 2, 1, 0,0,0);
+
+        if(!empty($matriculaEnviada))
+            $matriculaEnviada = true;
+        else if($fhoy->lt($fini) || $fhoy->gt($ffin))
+            $matriculaEnviada = true;
+        else
+            $matriculaEnviada = false;
+
+
+        //Selección de asignaturas disponibles para matricula
+        $asignaturasMat = DB::select("SELECT *
+                                    FROM asignatura
+                                    WHERE cod_asig NOT IN (SELECT cod_asig
+                                                           FROM usuario_asignatura
+                                                           WHERE id = $id)");
+
+        return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0],
+                               'ganadas' => $ganadas[0], 'matriculaEnviada' => $matriculaEnviada,
+                               'asignaturasMat' => $asignaturasMat]);
     }
 
     public function showAmigo($id1, $id2){
@@ -58,6 +81,9 @@ class PerfilController extends Controller {
         return $cadena;
     }
 
+    /*
+    //FUNCIONALIDAD ANULADA POR REQUIRIMIENTOS DE LOS REQUISITOS
+    //
     //Función que aumenta las asignaturas registradas en la base de datos a partir de
     //el expediente proporcionado
     function aumentarAsignaturas($lineaEmpezar, $lineaTerminar, $pdfTroceado){
@@ -99,7 +125,7 @@ class PerfilController extends Controller {
                     'nombre_asig' => rtrim($asignaturas[$i])]);
             }
         }
-    }
+    }*/
 
     //Añade las asignaturas sobre las que van a poder apostar los demás alumnos
     function anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id){
@@ -218,12 +244,12 @@ class PerfilController extends Controller {
 
             //Alumno de nuevo ingreso sin haber hecho ninguna convocatoria
             if($lineaEmpezar == 0){
-
                 return redirect('/perfil/'.$id)->with('status', 'Este expediente esta vacío, para que puedan realizar apuestas sobre usted deberá presentarse a alguna convocatoria');
             }
 
+            //NO USADO POR REQUISITOS
             //Aumentamos la tabla asignaturas
-            $this->aumentarAsignaturas($lineaEmpezar, $lineaTerminar, $pdfTroceado);
+            //$this->aumentarAsignaturas($lineaEmpezar, $lineaTerminar, $pdfTroceado);
 
             //Incluimos en la tabla usuario_asignatura las asignaturas
             $this->anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id);
@@ -250,4 +276,45 @@ class PerfilController extends Controller {
         }
 
     }
+
+    public function subirMatricula(Request $request, $id){
+        $seleccion = [];
+        for($i = 0; $i < 11; $i++){
+            if($request->input('asig'.$i+1) != -1)
+                array_push($seleccion, $request->input('asig'.$i+1));
+        }
+
+        if(count($seleccion) != count(array_unique($seleccion))){
+            return redirect('/perfil/'.$id)->with('status', 'No se pueden subir matriculas con dos asignaturas iguales. Revísalo');
+        }else if(count($seleccion) == 0){
+            return redirect('/perfil/'.$id)->with('status', 'Selecciona alguna asignatura para subir tu matrícula');
+        }else{
+            $curso = Carbon::now()->format('y');
+            $curso = $curso."".(((int)$curso)+1);
+            $registradaAsig = DB::table('usuario_asignatura')->where([['id', $id], ['curso', $curso]])->first();
+            foreach ($seleccion as $s) {
+                if(!empty($registradaAsig)){
+                    return redirect('/perfil/'.$id)->with('status', 'Lo sentimos, ya tenemos registros de que tu matrícula para este año ha sido subida');
+                }else{
+                    DB::table('usuario_asignatura')->insert([
+                        'id' => $id,
+                        'cod_asig' => $s,
+                        'curso' => $curso,
+                        'convocatoria' => -1]);
+                }
+            }
+
+            DB::table('users')->where('id',$id)->update(['creditCoins' => count($seleccion)*6]);
+            return redirect('/perfil/'.$id)->with('status', 'Matricula subida correctamente. Se han sumado tus creditCoins, ¡Suerte este cuatrimestre!');
+
+        }
+    }
+
+    /*NO ME ACUERDO PA QUE ERA PERO VALE PARA ALGO NOT tocar VALE PARA LAS APUESTAS
+    SELECT cod_asig, curso, MAX(convocatoria)
+    FROM `usuario_asignatura`
+    WHERE curso IN (SELECT MAX(curso)
+                    FROM usuario_asignatura)
+    GROUP BY cod_asig
+    */
 }
