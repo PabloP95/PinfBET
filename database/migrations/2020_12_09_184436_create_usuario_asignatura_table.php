@@ -16,7 +16,7 @@ class CreateUsuarioAsignaturaTable extends Migration
         Schema::create('usuario_asignatura', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->string('cod_asig');
-            $table->float('nota')->nullable();
+            $table->float('nota', 2, 1)->nullable();
             $table->integer('curso');
             $table->bigInteger('convocatoria');
 

@@ -28,6 +28,7 @@ class PerfilController extends Controller {
                                WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 1");
 
         //Control para la subida de las matrículas
+        //fini y ffin están puestas así por motivos de pruebas
         $matriculaEnviada = DB::table('usuario_asignatura')->where('id', $id)->where('nota', '=', -1)->first();
         $fhoy = Carbon::now();
         $fini = Carbon::create($fhoy->year, 1, 1,0,0,0);
@@ -254,24 +255,11 @@ class PerfilController extends Controller {
             //Incluimos en la tabla usuario_asignatura las asignaturas
             $this->anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id);
 
-
-            $realizadas = DB::select("SELECT COUNT(*) as total
-                                     FROM apuesta a, usu_apu_usu u
-                                     WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id");
-
-            $perdidas = DB::select("SELECT COUNT(*) as total
-                                  FROM apuesta a, usu_apu_usu u
-                                  WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 0");
-
-            $ganadas = DB::select("SELECT COUNT(*) as total
-                                   FROM apuesta a, usu_apu_usu u
-                                   WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 1");
-
             if($expedientePerteneceAlumno == false){
                 return redirect('/perfil/'.$id)->with('status', 'Este expediente no concuerda con los datos de tu perfil. Revísalo');
             }
             else{
-                return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0]]);
+                return redirect('/perfil/'.$id)->with('status', 'Expediente registrado correctamente.');
             }
         }
 

@@ -26,12 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `asignatura`
 --
-
-CREATE TABLE `asignatura` (
-  `cod_asig` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre_asig` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `asignatura`
 --
@@ -103,16 +97,6 @@ INSERT INTO `asignatura` (`cod_asig`, `nombre_asig`) VALUES
 ('21714064', 'TRABAJO FIN DE GRADO'),
 ('21714084', 'SISTEMAS DIGITALES');
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `asignatura`
---
-ALTER TABLE `asignatura`
-  ADD PRIMARY KEY (`cod_asig`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
