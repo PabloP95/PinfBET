@@ -11,7 +11,7 @@
         <div class="col-sm-2 sidenav">
             @include('anuncios.anuncio1')
         </div>
-        <div class="col-sm-10 text-left">
+        <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container row">
                     <div class="col-sm-11">
@@ -63,7 +63,12 @@
                 </div>
             </div>
         </div>
-    </div>
+            <div class="container">
+            </div>
+        </div>
+        <div class="col-sm-2 sidenav">
+            @include('anuncios.anuncio2')
+        </div>
 </div>
 
 @endsection
