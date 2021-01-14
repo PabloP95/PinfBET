@@ -14,7 +14,7 @@
         <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container row">
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <h2>Perfil de {{ Auth::user()->name }}</h2>
                         @if (session('status'))
                         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
                         </div>
                         @endif
                     </div>
-                    <div class=" col-sm-1 align-content-sm-end">
+                    <div class=" col-sm-2 align-content-sm-end">
                         <div class="row">
                             <h3>{{ Auth::user()->creditCoins}}</h3>
                             <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 40px"/>
@@ -66,8 +66,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Siglas</th>
+                            <th>Asignatura</th>
                             <th>Nota</th>
                             <th>Apuestas acertadas</th>
                             <th>Apuestas realizadas</th>
@@ -75,15 +74,21 @@
                     </thead>
                     <tbody>
                         @if(isset($expediente))
-                        @foreach ($expediente as $i=>$e)
+                        @foreach ($expediente as $exp)
                         <tr>
-
-                            <td>{{$e}}</td>
-                            <td>{{$i}}</td>
-                            <td>{{$linea2}}</td>
-                            <td>{{$linea3}}</td>
+                            <td>{{$exp}}</td>
+                            <td>{{$exp}}</td>
+                            <td>{{$exp}}</td>
+                            <td>{{$exp}}</td>
                         </tr>
                             @endforeach
+                        @else
+                        <tr>
+                            <td>Sin matricular</td>
+                            <td>0.0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
                         @endif
                     </tbody>
                 </table>
