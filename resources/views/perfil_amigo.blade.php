@@ -14,7 +14,7 @@
         <div class="col-sm-8 text-left">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h2>Perfil de su amigo {{$amigo->name }} {{$amigo->surname1 }}</h2>
+                    <h2>Perfil de su amigo <br>{{$amigo->name }} {{$amigo->surname1 }} {{$amigo->surname2 }}</h2>
                 </div>
             </div>
             <div class="container">
@@ -43,8 +43,7 @@
                     </div>
                 </div>
             </div><br><br>
-                </table>
-            </div>
+            </table>
         </div>
         <div class="col-sm-2 sidenav">
             @include('anuncios.anuncio2')
