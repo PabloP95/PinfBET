@@ -41,6 +41,8 @@
                             <th>Asignatura</th>
                             <th>Nota</th>
                             <th>Cantidad apostada</th>
+                            <th>Resultado</th>
+                            <th>Premio</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +52,8 @@
                             <td>{{$apuesta->name}}</td>
                             <td>{{$apuesta->asignatura}}</td>
                             <td>{{$apuesta->nota}}</td>
+                            <td>{{$apuesta->cantidad}}</td>
+                            <td>{{$apuesta->cantidad}}</td>
                             <td>{{$apuesta->cantidad}}</td>
                         </tr>
                         @endforeach
@@ -68,7 +72,7 @@
                             @foreach ($amigos as $amigo)
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a  href="/perfil/{{Auth::User()->id}}/{{$amigo->id}}" style="text-decoration: none;" title="Ver Perfil" >
+                                    <a  href="/perfil/{{Auth::User()->id}}/{{$amigo->id}}" style="color: #71d500" title="Ver Perfil" >
                                         {{$amigo->name}} {{$amigo->surname1}} {{$amigo->surname2}}
                                     </a>
                                 </div>
@@ -76,7 +80,9 @@
                                     {{$amigo->creditCoins}} <img src="{{ asset('/images/creditcoin.png') }}" style="padding-left: 10px; height: 30px"/>
                                 </div>
                                 <div class="col-sm-2">
+                                    <a href="/mensajes/{{Auth::user()->id}}">
                                     <img src="{{ asset('/images/mensaje.png') }}" alt="enviar mensaje" height="40px"/>
+                                    </a>
                                 </div>
                             </div>
                             @endforeach
@@ -99,7 +105,7 @@
                             @foreach ($pendientes as $p)
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$p->id}}" title="Ver Perfil" >
+                                    <a style="color: #d4ac0d" href="/perfil/{{Auth::User()->id}}/{{$p->id}}" title="Ver Perfil" >
                                         {{$p->name}} {{$p->surname1}} {{$p->surname2}}
                                     </a>
                                 </div>
@@ -125,17 +131,17 @@
                             <form id="buscador" method="POST" action="/panel/{{Auth::user()->id}}">
                                 @csrf
                                 <input name="busqueda" type="text" class="form-control" name="buscador" value="" autofocus>
-                                <input type="submit" class="btn btn-primary" name="buscar" value="Buscar">
+                                <input type="submit" class="btn btn-primary" style="margin-top: 10px;" name="buscar" value="Buscar">
                             </form>
                             <br>
                             @if(isset($buscadosAmigos) && isset($buscadosNoamig))
                                 @if(!empty($buscadosNoamig) || !empty($buscadosAmigos))
-                                    <h6>Usuarios disponibles</h6>
+                                    <h5>Usuarios disponibles</h5>
                                     @if(!empty($buscadosNoamig))
                                         @foreach($buscadosNoamig as $bna)
                                             <div class="row">
                                                 <div class="col-sm-10">
-                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                        <a style="color: white" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
                                                             {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
                                                         </a>
                                                 </div>
@@ -151,7 +157,7 @@
                                             @if($bna->pendiente == 0)
                                                 <div class="row">
                                                     <div class="col-sm-10">
-                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                        <a style="color: #71d500" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
                                                             {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
                                                         </a>
                                                     </div>
@@ -162,7 +168,7 @@
                                             @else
                                                 <div class="row">
                                                     <div class="col-sm-10">
-                                                        <a style="text-decoration: none" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
+                                                        <a style="color: #d4ac0d" href="/perfil/{{Auth::User()->id}}/{{$bna->id}}" title="Ver Perfil" >
                                                             {{$bna->name}} {{$bna->surname1}} {{$bna->surname2}}
                                                         </a>
                                                     </div>
