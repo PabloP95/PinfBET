@@ -92,6 +92,12 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <label><input type="checkbox" id="cbox1" value="first_checkbox" required>   Acepta nuestros <a href="/aviso-legal"> Términos y condiciones</a></label><br>
+                        </div>
+                    </div>
+
 
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
