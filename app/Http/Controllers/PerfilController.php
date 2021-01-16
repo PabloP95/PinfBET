@@ -23,11 +23,11 @@ class PerfilController extends Controller {
 
         $perdidas = DB::select("SELECT COUNT(*) as total
                               FROM apuesta a, usu_apu_usu u
-                              WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 0");
+                              WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.premio = 0");
 
         $ganadas = DB::select("SELECT COUNT(*) as total
                                FROM apuesta a, usu_apu_usu u
-                               WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.resultado = 1");
+                               WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id and a.premio > 0");
 
         //Control para la subida de las matrículas
         //fini y ffin están puestas así por motivos de pruebas
