@@ -51,3 +51,7 @@ Route::post('/apuesta/{id1}/{id2}', [App\Http\Controllers\ApuestaController::cla
 
 Route::get('/completarApuesta/{id1}/{id2}/{cod_asig}', [App\Http\Controllers\completarApuestaController::class, 'show'])->middleware('auth');
 Route::post('/completarApuesta/subir/{id1}/{id2}/{cod_asig}', [App\Http\Controllers\completarApuestaController::class, 'subirApuesta'])->middleware('auth');
+
+Route::get('/error403', function(){
+    return view('error403');
+});

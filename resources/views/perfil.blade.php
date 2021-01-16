@@ -68,27 +68,42 @@
                         <tr>
                             <th>Asignatura</th>
                             <th>Nota</th>
-                            <th>Apuestas acertadas</th>
-                            <th>Apuestas realizadas</th>
+                            <th>Curso</th>
+                            <th>Convocatoria</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(isset($expediente))
-                        @foreach ($expediente as $exp)
-                        <tr>
-                            <td>{{$exp}}</td>
-                            <td>{{$exp}}</td>
-                            <td>{{$exp}}</td>
-                            <td>{{$exp}}</td>
-                        </tr>
-                            @endforeach
-                        @else
-                        <tr>
-                            <td>Sin matricular</td>
-                            <td>0.0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
+                        @if(isset($asignaturasExp))
+                            @if(empty($asignaturasExp))
+                            <tr>
+                                <td>NO HAY REGISTROS DE SU EXPEDIENTE</td>
+                            </tr>
+                            @else
+                                @foreach ($asignaturasExp as $a)
+                                <tr>
+                                    <td>{{$a->nombre_asig}}</td>
+                                    @if(empty($a->nota))
+                                    <td>NP</td>
+                                    @else
+                                    <td>{{$a->nota}}</td>
+                                    @endif
+                                    <td>{{$a->curso}}</td>
+                                    @if($a->convocatoria == -1)
+                                        <td>Primera Matricula</td>
+                                    @else
+                                        @if($a->convocatoria == 1)
+                                        <td>Febrero</td>
+                                        @endif
+                                        @if($a->convocatoria == 2)
+                                        <td>Junio</td>
+                                        @endif
+                                        @if($a->convocatoria == 3)
+                                        <td>Septiembre</td>
+                                        @endif
+                                    @endif
+                                </tr>
+                                @endforeach
+                            @endif
                         @endif
                     </tbody>
                 </table>

@@ -105,7 +105,7 @@
 <br><br>
 @else
 <br><br>
-<h5><strong>A ESTA FECHA, YA NO ESTA DISPONIBLE LA SUBIDA DE LA MATRÍCULA</strong></h5>
+<h5><strong>A ESTA FECHA, YA NO ESTA DISPONIBLE LA SUBIDA DE LA MATRÍCULA O YA HAS SUBIDO TU MATRÍCULA</strong></h5>
 <h5>Subida de la matricula</h5>
 <p>Recuerda que debes subir la matrícula entre 1 y el 30 de octubre</p>
 <strong>CUIDADO CON LAS ASIGNATURAS QUE ELIGES. NO PODRÁS HACER CAMBIOS LUEGO.</strong>
