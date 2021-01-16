@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Hash;
 use App\Models\Mensaje;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -178,6 +180,9 @@ class PerfilController extends Controller {
                 for($j = 0; $j < count($lineaCalificacion); $j++){
                     if(preg_match('/[0-9][0-9]-[0-9][0-9]/', $lineaCalificacion[$j])){
                         $c = explode("-", $lineaCalificacion[$j]);
+                        //Quitar, pruebas
+                        $c[0] = (int)$c[0] + 1;
+                        $c[1] = (int)$c[1] + 1;
                         array_push($curso, (int)($c[0]."".$c[1]));
                     }
                 }
@@ -314,11 +319,23 @@ class PerfilController extends Controller {
         }
     }
 
-    /*NO ME ACUERDO PA QUE ERA PERO VALE PARA ALGO NOT tocar VALE PARA LAS APUESTAS
-    SELECT cod_asig, curso, MAX(convocatoria)
-    FROM `usuario_asignatura`
-    WHERE curso IN (SELECT MAX(curso)
-                    FROM usuario_asignatura)
-    GROUP BY cod_asig
-    */
+    public function cambiarPass(Request $request){
+        if (!(Hash::check($request->get('password-old'), Auth::user()->password))) {
+            return redirect()->back()->with("status","La contraseña introducida no concuerda con tu antigua contraseña");
+        }
+        if(strcmp($request->get('password-old'), $request->get('password-new')) == 0){
+            return redirect()->back()->with("status","La contraseña no puede ser la misma que la actual. Por favor, cambiala.");
+        }
+        if(strcmp($request->get('password-new'), $request->get('password-confirmation')) == 0){
+            auth()->user()->update([
+                'password' => Hash::make($request->input('password-new'))
+            ]);
+            return redirect()->back()->with("success","Contraseña cambiada correctamente.");
+        }else{
+            return redirect()->back()->with("status","La confirmación de contraseña no coincide revísalo.");
+        }
+
+
+    }
+
 }

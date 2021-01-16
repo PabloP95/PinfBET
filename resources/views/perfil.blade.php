@@ -21,6 +21,11 @@
                             {{ session('status') }}
                         </div>
                         @endif
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
                     </div>
                     <div class=" col-sm-2 align-content-sm-end">
                         <div class="row">

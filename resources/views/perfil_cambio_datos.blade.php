@@ -2,18 +2,13 @@
 <br>
 <h5>Cambio de contraseña</h5>
 <p>Si quieres cambiar tu contraseña en el siguiente apartado puedes hacerlo.</p>
-<form method="POST" action="#">
+<form method="POST" action="/cambiar-contraseña">
+    @csrf
     <div class="form-group row">
         <label for="password-old" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña antigua') }}</label>
 
         <div class="col-md-6">
             <input id="password-old" type="password" class="form-control @error('password') is-invalid @enderror" name="password-old" required autocomplete="old-password">
-
-            @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
         </div>
     </div>
 
@@ -35,7 +30,7 @@
         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
 
         <div class="col-md-6">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="confirm-password">
+            <input id="password-confirm" type="password" class="form-control" name="password-confirmation" required autocomplete="confirm-password">
         </div>
     </div>
 
