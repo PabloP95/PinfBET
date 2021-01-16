@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Mensaje;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -57,8 +58,10 @@ class MensajeController extends Controller {
                              ORDER BY u.name ASC");
 
 
-
-        return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
+        if($id == Auth::user()->id)
+            return view('mensajes', ['mensajes' => $mensajes, 'amigos' => $amigos]);
+        else
+            return view('error403');
     }
 
     public function subirMensaje(Request $request, $id, $ida) {

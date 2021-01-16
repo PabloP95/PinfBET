@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 
 use App\Models\Apuesta;
 use App\Models\User;
@@ -26,7 +27,10 @@ class completarApuestaController extends Controller
             $asignatura = $asignatura[0];
 
 
-            return view('completarApuesta', ['amigo' => $amigo, 'asignatura' => $asignatura]);
+            if($id1 == Auth::user()->id)
+                return view('completarApuesta', ['amigo' => $amigo, 'asignatura' => $asignatura]);
+            else
+                return view('error403');
         }
 
     public function subirApuesta(Request $request, $id1, $id2, $cod_asig){

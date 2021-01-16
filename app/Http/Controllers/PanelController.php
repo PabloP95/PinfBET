@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Mensaje;
 use App\Models\User;
 use App\Models\Friendlist;
@@ -27,7 +28,11 @@ class PanelController extends Controller {
                               WHERE u.id != $id and f.pendiente = 1 and (f.id2 = $id and u.id = f.id1)
                               ORDER BY u.name ASC");
 
-        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes]);
+          if($id == Auth::user()->id)
+              return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes]);
+          else
+              return view('error403');
+
     }
 
     public function buscar(Request $request, $id) {
@@ -77,8 +82,12 @@ class PanelController extends Controller {
                                           WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and id != $id and ((id1 = id and id2 = $id) or (id1 = $id and id2 = id))");
         }
 
+        if($id == Auth::user()->id)
+            return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscadosNoamig' => $buscadosNoamig, 'buscadosAmigos' => $buscadosAmigos]);
+        else
+            return view('error403');
 
-        return view('panel', ['apuestas' => $apuestas, 'amigos' => $amigos, 'pendientes' => $pendientes, 'buscadosNoamig' => $buscadosNoamig, 'buscadosAmigos' => $buscadosAmigos]);
+
     }
 
     public function agregar($id1, $id2){
