@@ -17,9 +17,10 @@ class CreateApuestaTable extends Migration
             $table->increments('cod_apuesta');
             $table->timestamp('fecha');
             $table->integer('cantidad');
-            $table->boolean('resultado')->nullable();
-            $table->float('nota_apuesta');
+            $table->float('resultado')->nullable();
+            $table->float('nota_apuesta', 2, 1);
             $table->string('cod_asig');
+            $table->integer('premio')->nullable();
 
             $table->foreign('cod_asig')->references('cod_asig')->on('asignatura');
         });
