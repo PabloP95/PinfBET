@@ -57,8 +57,13 @@
                                 <td>No finalizada</td>
                                 <td>No finalizada</td>
                             @else
-                                <td>{{$apuesta->resultado}}</td>
-                                <td>{{$apuesta->premio}}</td>
+                                @if($apuesta->resultado != -1)
+                                    <td>{{$apuesta->resultado}}</td>
+                                    <td>{{$apuesta->premio}}</td>
+                                @else
+                                    <td>No presentado</td>
+                                    <td>{{$apuesta->premio}}</td>
+                                @endif
                             @endif
 
                         </tr>

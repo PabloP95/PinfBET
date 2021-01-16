@@ -221,7 +221,8 @@ class PerfilController extends Controller {
             foreach($cods_apuesta as $c){
                 $asigs = DB::select("SELECT nota
                                      FROM usuario_asignatura
-                                     WHERE cod_asig = $c->cod_asig");
+                                     WHERE cod_asig = $c->cod_asig
+                                     ORDER BY nota ASC");
 
                 $nota = $asigs[count($asigs)-1]->nota;
                 //Acierto completo
