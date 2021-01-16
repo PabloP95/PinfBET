@@ -33,7 +33,7 @@
                             <li role="presentation" class="list-group-item" style="width: 100%; background-color: transparent; border: none">
                                 <form method="POST" action="/apuesta/{{ Auth::user()->id }}/{{Auth::user()->id}}">
                                     @csrf
-                                    <button type="submit" name="amigo" value="{{Auth::user()->id}}" class="btn btn-success" style="width: 100%" >YO</button>
+                                    <button type="submit" name="amigo" value="{{Auth::user()->id}}" class="btn btn-success" style="width: 100%" >Yo</button>
                                 </form>
                             </li>
                             @if(isset($amigos))

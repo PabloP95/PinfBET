@@ -73,11 +73,11 @@ class PerfilController extends Controller {
 
         $perdidas = DB::select("SELECT COUNT(*) as total
                               FROM apuesta a, usu_apu_usu u
-                              WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id2 and a.resultado = 0");
+                              WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id2 and a.premio = 0");
 
         $ganadas = DB::select("SELECT COUNT(*) as total
                                FROM apuesta a, usu_apu_usu u
-                               WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id2 and a.resultado = 1");
+                               WHERE u.cod_apuesta = a.cod_apuesta and u.apostador = $id2 and a.premio > 0");
 
 
         $amigo = DB::table('users')->where('id', $id2)->get();
