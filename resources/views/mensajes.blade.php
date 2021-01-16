@@ -41,7 +41,7 @@
                         </div>
                         @foreach($amigos as $a)
                         <div role="tabpanel" class="tab-pane fade" id="{{$a->name}}{{$a->surname1}}{{$a->surname2}}" >
-                            <div id="charla" onload="updateScroll()" style="max-height: 400px; overflow: auto">
+                            <div style="max-height: 400px; overflow: auto">
                                 @foreach($mensajes as $sms)
                                 @if((Auth::User()->id == $sms->emisor && $a->id == $sms->receptor) || (Auth::User()->id == $sms->receptor && $a->id == $sms->emisor))
                                 @if(Auth::User()->id == $sms->emisor)
