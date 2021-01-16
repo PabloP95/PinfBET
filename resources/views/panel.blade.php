@@ -53,8 +53,14 @@
                             <td>{{$apuesta->asignatura}}</td>
                             <td>{{$apuesta->nota}}</td>
                             <td>{{$apuesta->cantidad}}</td>
-                            <td>{{$apuesta->cantidad}}</td>
-                            <td>{{$apuesta->cantidad}}</td>
+                            @if(empty($apuesta->resultado))
+                                <td>No finalizada</td>
+                                <td>No finalizada</td>
+                            @else
+                                <td>{{$apuesta->resultado}}</td>
+                                <td>{{$apuesta->premio}}</td>
+                            @endif
+
                         </tr>
                         @endforeach
 

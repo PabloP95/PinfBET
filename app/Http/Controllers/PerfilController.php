@@ -212,7 +212,46 @@ class PerfilController extends Controller {
                 }
             }
         }
-     }
+        $cods_apuesta = DB::select("SELECT a.cod_apuesta as cod_apuesta, u.apostador as apostador, a.cod_asig as cod_asig, a.nota_apuesta as nota_apuesta, a.cantidad as cantidad
+                                    FROM usu_apu_usu u, apuesta a
+                                    WHERE u.matriculado = $id and a.cod_apuesta = u.cod_apuesta and a.resultado is NULL");
+
+
+        if(!empty($cods_apuesta)){
+            foreach($cods_apuesta as $c){
+                $asigs = DB::select("SELECT nota
+                                     FROM usuario_asignatura
+                                     WHERE cod_asig = $c->cod_asig");
+
+                $nota = $asigs[count($asigs)-1]->nota;
+                //Acierto completo
+                if($c->nota_apuesta == $nota){
+                    DB::table('apuesta')
+                        ->where('cod_apuesta', $c->cod_apuesta)
+                        ->update(['resultado' => $nota,
+                                  'premio' => (int)($c->cantidad)*4]);
+
+                     $u = DB::table('users')->where('id',$c->apostador)->first();
+                     DB::table('users')->where('id',$u->id)->update(['creditCoins' => $u->creditCoins + $c->cantidad*4]);
+                }else if((int)$c->nota_apuesta == (int)$nota){
+                    DB::table('apuesta')
+                        ->where('cod_apuesta', $c->cod_apuesta)
+                        ->update(['resultado' => $nota,
+                                 'premio' => (int)($c->cantidad)*2]);
+
+                    $u = DB::table('users')->where('id',$c->apostador)->get()->first();
+                    DB::table('users')->where('id',$u->id)->update(['creditCoins' => $u->creditCoins + $c->cantidad*2]);
+
+                }else {
+                    DB::table('apuesta')
+                        ->where('cod_apuesta', $c->cod_apuesta)
+                        ->update(['resultado' => $nota,
+                                 'premio' => 0]);
+                }
+            }
+        }
+    }
+
 
     public function subirExpediente(Request $request, $id){
 

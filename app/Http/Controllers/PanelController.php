@@ -14,7 +14,7 @@ class PanelController extends Controller {
 
     public function show($id) {
 
-        $apuestas = DB::select("SELECT u.name as name, a.nombre_asig as asignatura, ap.nota_apuesta as nota, ap.cantidad as cantidad, ua.cod_apuesta as cod_apuesta
+        $apuestas = DB::select("SELECT u.name as name, a.nombre_asig as asignatura, ap.nota_apuesta as nota, ap.cantidad as cantidad, ua.cod_apuesta as cod_apuesta, ap.resultado as resultado, ap.premio as premio
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
@@ -37,7 +37,7 @@ class PanelController extends Controller {
 
     public function buscar(Request $request, $id) {
 
-        $apuestas = DB::select("SELECT u.name as name, a.nombre_asig as asignatura, ap.nota_apuesta as nota, ap.cantidad as cantidad, ua.cod_apuesta as cod_apuesta
+        $apuestas = DB::select("SELECT u.name as name, a.nombre_asig as asignatura, ap.nota_apuesta as nota, ap.cantidad as cantidad, ua.cod_apuesta as cod_apuesta, ap.resultado as resultado, ap.premio as premio
                                 FROM users as u, apuesta as ap, asignatura as a, usu_apu_usu as ua
                                 WHERE ap.cod_apuesta = ua.cod_apuesta and ap.cod_asig = a.cod_asig and ua.matriculado = u.id and ua.apostador = $id");
 
@@ -55,18 +55,6 @@ class PanelController extends Controller {
         $buscadosNoamig = [];
 
         if(!empty($request->input('busqueda'))){
-                /*
-                $buscados = DB::select("SELECT distinct name, surname1, surname2, id, pendiente
-                                        FROM users, friendlist
-                                        WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and
-                                        id NOT IN (SELECT id2
-    									FROM users u, friendlist f
-    									WHERE (u.id = $id and u.id = f.id1 and f.pendiente = 0)) and
-                                        id NOT IN (SELECT id1
-    									FROM users u, friendlist f
-    									WHERE (u.id = $id and u.id = f.id2 and f.pendiente = 0))
-                                        and id != $id");
-                                        */
             $buscadosNoamig = DB::select("SELECT name, surname1, surname2, id
                                           FROM users
                                           WHERE concat(name,' ',surname1,' ',surname2) like '%".$request->input('busqueda')."%' and id != $id
