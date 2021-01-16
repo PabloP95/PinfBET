@@ -61,11 +61,6 @@
                                 {{ __('Iniciar Sesión') }}
                             </button>
 
-                            @if (Route::has('password.request'))
-                            <a class="aContenido" href="{{ route('password.request') }}">
-                                {{ __('¿Olvidó su contraseña?') }}
-                            </a>
-                            @endif
                         </div>
                     </div>
                 </form>
