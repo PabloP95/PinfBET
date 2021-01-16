@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Mensaje;
 use App\Models\User;
-use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +29,7 @@ class PerfilController extends Controller {
 
         //Control para la subida de las matrículas
         //fini y ffin están puestas así por motivos de pruebas
-        $matriculaEnviada = DB::table('usuario_asignatura')->where('id', $id)->where('nota', '=', -1)->first();
+        $matriculaEnviada = DB::table('usuario_asignatura')->where('id', $id)->where('convocatoria', '=', -1)->first();
         $fhoy = Carbon::now();
         $fini = Carbon::create($fhoy->year, 1, 1,0,0,0);
         $ffin = Carbon::create($fhoy->year, 2, 1, 0,0,0);
@@ -49,9 +49,18 @@ class PerfilController extends Controller {
                                                            FROM usuario_asignatura
                                                            WHERE id = $id)");
 
-        return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0],
+        $asignaturasExp = DB::select("SELECT *
+                                      FROM usuario_asignatura u , asignatura a
+                                      WHERE u.cod_asig = a.cod_asig and id = $id
+                                      ORDER BY curso");
+
+        if($id == Auth::user()->id)
+            return view('perfil', ['realizadas' => $realizadas[0], 'perdidas' => $perdidas[0],
                                'ganadas' => $ganadas[0], 'matriculaEnviada' => $matriculaEnviada,
-                               'asignaturasMat' => $asignaturasMat]);
+                               'asignaturasMat' => $asignaturasMat, 'asignaturasExp' => $asignaturasExp]);
+       else {
+           return view('error403');
+       }
     }
 
     public function showAmigo($id1, $id2){
@@ -70,7 +79,12 @@ class PerfilController extends Controller {
 
 
         $amigo = DB::table('users')->where('id', $id2)->get();
-        return view('perfil_amigo', ['amigo' => $amigo->first(), 'realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0]]);
+
+        if($id1 == Auth::user()->id)
+            return view('perfil_amigo', ['amigo' => $amigo->first(), 'realizadas' => $realizadas[0], 'perdidas' => $perdidas[0], 'ganadas' => $ganadas[0]]);
+        else {
+            return view('error403');
+        }
     }
 
     function tildes_a_mayus($cadena){
@@ -195,7 +209,6 @@ class PerfilController extends Controller {
         }
      }
 
-
     public function subirExpediente(Request $request, $id){
 
         if($request->file->extension('file') != "pdf"){
@@ -252,13 +265,12 @@ class PerfilController extends Controller {
             //Aumentamos la tabla asignaturas
             //$this->aumentarAsignaturas($lineaEmpezar, $lineaTerminar, $pdfTroceado);
 
-            //Incluimos en la tabla usuario_asignatura las asignaturas
-            $this->anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id);
-
             if($expedientePerteneceAlumno == false){
                 return redirect('/perfil/'.$id)->with('status', 'Este expediente no concuerda con los datos de tu perfil. Revísalo');
             }
             else{
+                //Incluimos en la tabla usuario_asignatura las asignaturas
+                $this->anadirUsuarioAsignatura($lineaEmpezar, $lineaTerminar, $pdfTroceado, $id);
                 return redirect('/perfil/'.$id)->with('status', 'Expediente registrado correctamente.');
             }
         }
@@ -268,7 +280,7 @@ class PerfilController extends Controller {
     public function subirMatricula(Request $request, $id){
         $seleccion = [];
         for($i = 0; $i < 11; $i++){
-            if($request->input('asig'.$i+1) != -1)
+            if($request->input('asig'.$i+1) != "-1")
                 array_push($seleccion, $request->input('asig'.$i+1));
         }
 
@@ -277,8 +289,12 @@ class PerfilController extends Controller {
         }else if(count($seleccion) == 0){
             return redirect('/perfil/'.$id)->with('status', 'Selecciona alguna asignatura para subir tu matrícula');
         }else{
-            $curso = Carbon::now()->format('y');
-            $curso = $curso."".(((int)$curso)+1);
+            //Esta parte de la variable curso esta pensado para usarse en el período estandar de matriculación
+            //su uso en otras fechas provoca errores fatales. Para que funcione en nuestro caso de prueba pondremos
+            //curso como una variable constante
+            //$curso = Carbon::now()->format('y');
+            //$curso = $curso."".(((int)$curso)+1);
+            $curso = "2021";
             $registradaAsig = DB::table('usuario_asignatura')->where([['id', $id], ['curso', $curso]])->first();
             foreach ($seleccion as $s) {
                 if(!empty($registradaAsig)){
@@ -292,7 +308,7 @@ class PerfilController extends Controller {
                 }
             }
 
-            DB::table('users')->where('id',$id)->update(['creditCoins' => count($seleccion)*6]);
+            DB::table('users')->where('id',$id)->update(['creditCoins' => Auth::user()->creditCoins + count($seleccion)*6]);
             return redirect('/perfil/'.$id)->with('status', 'Matricula subida correctamente. Se han sumado tus creditCoins, ¡Suerte este cuatrimestre!');
 
         }
