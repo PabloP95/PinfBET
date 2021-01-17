@@ -33,8 +33,8 @@ class PerfilController extends Controller {
         //fini y ffin están puestas así por motivos de pruebas
         $matriculaEnviada = DB::table('usuario_asignatura')->where('id', $id)->where('convocatoria', '=', -1)->first();
         $fhoy = Carbon::now();
-        $fini = Carbon::create($fhoy->year, 1, 1,0,0,0);
-        $ffin = Carbon::create($fhoy->year, 2, 1, 0,0,0);
+        $fini = Carbon::create($fhoy->year, 10, 1,0,0,0);
+        $ffin = Carbon::create($fhoy->year, 11, 1, 0,0,0);
 
         if(!empty($matriculaEnviada))
             $matriculaEnviada = true;
@@ -180,9 +180,6 @@ class PerfilController extends Controller {
                 for($j = 0; $j < count($lineaCalificacion); $j++){
                     if(preg_match('/[0-9][0-9]-[0-9][0-9]/', $lineaCalificacion[$j])){
                         $c = explode("-", $lineaCalificacion[$j]);
-                        //Quitar, pruebas
-                        $c[0] = (int)$c[0] + 1;
-                        $c[1] = (int)$c[1] + 1;
                         array_push($curso, (int)($c[0]."".$c[1]));
                     }
                 }
@@ -337,9 +334,9 @@ class PerfilController extends Controller {
             //Esta parte de la variable curso esta pensado para usarse en el período estandar de matriculación
             //su uso en otras fechas provoca errores fatales. Para que funcione en nuestro caso de prueba pondremos
             //curso como una variable constante
-            //$curso = Carbon::now()->format('y');
-            //$curso = $curso."".(((int)$curso)+1);
-            $curso = "2021";
+            $curso = Carbon::now()->format('y');
+            $curso = $curso."".(((int)$curso)+1);
+
             $registradaAsig = DB::table('usuario_asignatura')->where([['id', $id], ['curso', $curso]])->first();
             foreach ($seleccion as $s) {
                 if(!empty($registradaAsig)){
